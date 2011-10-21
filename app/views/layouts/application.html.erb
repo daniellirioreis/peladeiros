@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>RedPlace</title>
+<title>Nakeds | Comunidade de peladeiro on line</title>
+<link REL="SHORTCUT ICON" href="/images/favicon.png" />    
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <%= stylesheet_link_tag 'style', 'table' %>
 
@@ -11,7 +12,7 @@
   <div class="header">
     <div class="header_resize">
       <div class="logo">
-        <h1><a href="dashboard"><span>Red</span>Place <small>Put your best slogan here</small></a></h1>
+        <%= image_tag('/images/logo.png')%>
       </div>
       <div class="clr">
       </div>
@@ -40,12 +41,26 @@
       <% if current_user.present? %>
         <div class="sidebar">
           <div class="gadget">
-            <h2 class="star"><span>Sidebar</span> Menu</h2>
+            <h2 class="star">Menu</h2>
             <div class="clr"></div>
             <ul class="sb_menu">
-              <li><%= link_to 'logout', destroy_user_session_path, :confirm => 'logout confirm' %>     </li>
-              <li><%= link_to 'Places', places_path %></li>
-              <li><%= link_to 'Companies', companies_path %></li>
+              <li>
+                <%= image_tag('/images/buttons/exit.png')%>    
+                <%= link_to 'logout', destroy_user_session_path, :confirm => 'logout confirm' %>           </li>
+              <li>
+                <%= image_tag('/images/buttons/game.png')%>  
+                <%= link_to 'Games', places_path %>
+              </li>
+              <li>
+                <%= image_tag('/images/buttons/company.png')%>  
+                <%= link_to 'Companies', companies_path %>
+                </li>
+              
+              <li>
+                <%= image_tag('/images/buttons/avatar.png')%>  
+                <%= link_to 'New User', "" %>
+              </li>
+              
             </ul>
           </div>
         </div>
