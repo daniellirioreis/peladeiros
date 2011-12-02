@@ -1,0 +1,15 @@
+pt-BR:
+  errors:
+    messages:
+      not_saved:
+        one: "Não foi possível gravar %{resource}: 1 erro"
+        other: "Não foi possível gravar %{resource}: %{count} erros."
+  devise:
+    failure:
+      already_authenticated: 'Usuário já está logado.'
+      unauthenticated: 'Você precisa se autenticar para acessar essa página.'
+      invalid: 'Login e/ou senha inválidos.'
+      timeout: 'Sua sessão expirou, por favor efetue login novamente.'
+    sessions:
+      signed_in: 'Login efetuado com sucesso.'
+      signed_out: 'Logout efetuado com sucesso.'

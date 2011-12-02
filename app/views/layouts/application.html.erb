@@ -41,28 +41,62 @@
       <% if current_user.present? %>
         <div class="sidebar">
           <div class="gadget">
-            <h2 class="star">Menu</h2>
+            <h2 class="star"><%= current_company%></h2>
+            <h5 class="star"><%= "Olá! #{current_user} seja bem vindo ao Nakeds"%></h5>
+            
             <div class="clr"></div>
             <ul class="sb_menu">
               <li>
                 <%= image_tag('/images/buttons/exit.png')%>    
-                <%= link_to 'logout', destroy_user_session_path, :confirm => 'logout confirm' %>           </li>
-              <li>
-                <%= image_tag('/images/buttons/game.png')%>  
-                <%= link_to 'Games', places_path %>
+                <%= link_to 'Logout', destroy_user_session_path, :confirm => 'logout confirm' %>           </li>
               </li>
+              
               <li>
                 <%= image_tag('/images/buttons/company.png')%>  
-                <%= link_to 'Companies', companies_path %>
-                </li>
+                <%= link_to 'Clubes', companies_path %>
+              </li>
+              
+              <li>
+                <%= image_tag('/images/buttons/linking.png')%>  
+                <%= link_to 'Escolha de clube', linking_company_users_path %>
+              </li>
+              <li>
+                <%= image_tag('/images/buttons/place.png')%>  
+                <%= link_to 'Lugares', places_path %>
+              </li>
+
+              <li>
+                <%= image_tag('/images/buttons/game.png')%>  
+                <%= link_to 'Games', games_path %>
+              </li>
+              
               
               <li>
                 <%= image_tag('/images/buttons/avatar.png')%>  
-                <%= link_to 'New User', "" %>
+                <%= link_to 'my profile', edit_user_registration_path %>
               </li>
-              
+
+              <li>
+                <%= image_tag('/images/buttons/group.png')%>  
+                <%= link_to 'Convocação', " " %>
+              </li>
             </ul>
           </div>
+        </div>
+      <% else %>
+        <div class="sidebar">
+          <div class="gadget">
+            <h3 class="star">Cadastre sua pelada on line e chame seus amigos.</h3>
+            <div class="clr"></div>
+            <ul class="sb_menu">
+             <%= image_tag('/images/buttons/game.png')%>   
+             <%= image_tag('/images/buttons/arrow.png')%>
+             <%= image_tag('/images/buttons/contact.png')%>
+             <%= image_tag('/images/buttons/arrow.png')%>             
+             <%= image_tag('/images/buttons/group.png')%>
+              
+            </ul>
+          <div>
         </div>
       <% end %>
       <div class="clr"></div>
@@ -70,8 +104,6 @@
   </div>
   <div class="footer">
     <div class="footer_resize">
-      <p class="lf">&copy; Copyright <a href="http://noobsofthouse.heroku.com">MyWebSite</a>.</p>
-      <p class="rf">Layout by Atomic <a href="http://noobsofthouse.heroku.com">Website Templates</a></p>
       <div class="clr"></div>
     </div>
   </div>

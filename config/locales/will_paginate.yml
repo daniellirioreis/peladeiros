@@ -1,0 +1,8 @@
+pt-BR:
+  will_paginate:
+    entry: "registros"
+    found:
+      zero: "Não existem %{entry_name}"
+      one: "<b>%{size}</b> %{entry_name}"
+      other: "<b>%{size}</b> %{entry_name}"
+    display: "Exibindo %{entry_name} <b>%{from}</b> - <b>%{to}</b> de %{total} no total"

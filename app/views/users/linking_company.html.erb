@@ -1,0 +1,20 @@
+<h3>Escolha o clube deseja consultar.</h3>
+
+  <h2>Listagem de Clubes</h2>
+
+<table class='records'>
+  <tr>
+    <th>Name</th>
+    <th COLSPAN="3"> Ações</th>
+  </tr>
+
+<% @companies.each do |company| %>
+  <tr>
+    <td><%= company.name %></td>
+    <td align='center'>
+        <%= link_to 'Escolher', switch_to_company_user_path(company.id) %>
+    </td>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @companies %>

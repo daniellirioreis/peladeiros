@@ -2,7 +2,7 @@ class CompaniesController < ApplicationController
   # GET /companies
   # GET /companies.xml
   def index
-    @companies = Company.all
+    @companies = Company.paginate(:per_page => 2, :page => params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

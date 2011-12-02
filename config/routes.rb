@@ -1,7 +1,18 @@
 Teste::Application.routes.draw do
 
+  resources :games
+
   devise_for :users do
     root :to => 'devise/sessions#new'
+  end
+
+  resources :users, :except => :show do
+    collection do
+      get :linking_company
+    end
+    member do
+      get :switch_to_company
+    end
   end
 
   get 'dashboard' => 'dashboard#index'

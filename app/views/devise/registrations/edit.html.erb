@@ -1,4 +1,4 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2>Editar <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= devise_error_messages! %>
@@ -14,6 +14,31 @@
 
   <p><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
   <%= f.password_field :current_password %></p>
+
+  <p>
+    <%= f.label :company_default_id, 'Clube padrão' %><br />    
+    <%= f.select :company_default_id , Company.all.collect{|p| [p.name, p.id]}, {:prompt => 'Selecione'} %>    
+  </p>
+
+
+  <% unless Company.all.empty? %>
+      <table>
+        <% contador = 0 %>
+        <% Company.all.each do |company| %>
+          <% if contador == 0 %>
+            <tr>
+            <%end%>
+            <%  contador = contador + 1 %>
+            <td>&nbsp;&nbsp;<%= check_box_tag 'user[company_ids][]', company.id, resource.company_ids.include?(company.id),  %>
+              <%= company.name %>&nbsp;&nbsp;</td>
+            <% if contador == 3 %>
+              <%contador = 0%>
+            </tr>
+          <%end%>
+        <% end %>
+      </table>
+  <% end %>
+    
 
   <p><%= f.submit "Update" %></p>
 <% end %>

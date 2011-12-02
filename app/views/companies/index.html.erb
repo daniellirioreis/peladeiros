@@ -1,22 +1,24 @@
-<h1>Listing companies</h1>
+<h2>Listagem de Clubes</h2>
 
-<table>
+<table class='records'>
   <tr>
     <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th COLSPAN="3"> Ações</th>
   </tr>
 
 <% @companies.each do |company| %>
   <tr>
     <td><%= company.name %></td>
-    <td><%= link_to 'Show', company %></td>
-    <td><%= link_to 'Edit', edit_company_path(company) %></td>
-    <td><%= link_to 'Destroy', company, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td>
+        <%= link_to 'Show', company %>
+        <%= link_to 'Edit', edit_company_path(company) %>
+        <%= link_to 'Destroy', company, :confirm => 'Are you sure?', :method => :delete %>
+    </td>
   </tr>
 <% end %>
 </table>
+
+<%= will_paginate @companies %>
 
 <br />
 

@@ -46,4 +46,16 @@ Teste::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+  
+  #configuracao de email 
+  config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      :address              => "smtp.gmail.com",
+      :port                 => 587,
+      :user_name            => 'nakeds.suport@gmail.com',
+      :password             => 'Daniel120188',
+      :authentication       => 'plain',
+      :enable_starttls_auto => true  }
+      
+  
 end

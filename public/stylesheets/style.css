@@ -9,7 +9,7 @@ body {
 html, .main {
 	padding:0;
 	margin:0;
-	background:#fff url(/images/header_bg.gif) repeat-x top;
+	background:#fff url(/images/p.png) repeat-x top;
 }
 .clr {
 	clear:both;
@@ -46,10 +46,12 @@ h1 small {
 	letter-spacing:normal;
 }
 h2 {
-	font:normal 24px Arial, Helvetica, sans-serif;
-	padding:8px 0;
-	margin:8px 0;
-	color:#4f5452;
+	margin:0;
+	padding:16px 0;
+	color:#717171;
+	font:normal 25px/1.2em Arial, Helvetica, sans-serif;
+	letter-spacing:-3px;
+	text-transform:uppercase;
 }
 p {
 	margin:8px 0;
@@ -57,7 +59,7 @@ p {
 	font:normal 12px/1.8em Arial, Helvetica, sans-serif;
 }
 a {
-	color:#de484d;
+	color:black;
 	text-decoration:underline;
 }
 .header, .content, .menu_nav, .fbg, .footer, form, ol, ol li, ul, .content .mainbar, .content .sidebar {
@@ -147,11 +149,10 @@ a {
 	margin:0;
 	padding:0;
 	float:left;
-	width:662px;
+	width:750px;
 }
 .content .mainbar img {
 	padding:4px;
-	border:1px solid #d2d5d4;
 }
 .content .mainbar img.fl {
 	margin:4px 16px 4px 0;
@@ -164,7 +165,7 @@ a {
 .content .sidebar {
 	padding:0;
 	float:right;
-	width:300px;
+	width:200px;
 }
 .content .sidebar .gadget {
 	margin:0 0 8px 0;
@@ -191,7 +192,6 @@ ul.sb_menu li a, ul.ex_menu li a {
 	text-decoration:none;
 	margin-left:-12px;
 	padding-left:12px;
-	background:url(/images/li.gif) no-repeat left center;
 }
 ul.sb_menu li a:hover, ul.ex_menu li a:hover {
 	color:#de484d;
@@ -227,7 +227,6 @@ ul.ex_menu li a:hover {
 }
 .fbg img {
 	padding:4px;
-	border:1px solid #d2d5d4;
 }
 .fbg .col {
 	margin:0;
@@ -327,8 +326,7 @@ ol li .send {
 }
 
 label {
-  color: #000;
-  font-weight: bold;
+  color: #717171;
   font-size: 11px;
   line-height: 15px;
 }
@@ -371,6 +369,43 @@ textarea {
     height:20px;
 }
 
+#error_explanation{
+  background:#EEB4B4;  
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  padding:0 5px 5px 5px;
+  margin:5px 0 0 0;
+  width:auto;
+  border:solid 1px #ccc;
+  
+}
+
+.pagination{
+  background white;  
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  padding:0 5px 5px 5px;
+  margin:5px 0 0 0;
+  width:auto;
+  border:solid 1px #ccc;
+  text-align: center;
+  
+}
+fieldset{
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    padding:0 5px 5px 5px;
+    margin:5px 0 0 0;
+    width:auto;
+    border:solid 1px #ccc;
+}
+legend{
+    font-weight:bold;
+    padding:0 4px 0 4px;
+    border-left:solid 2px #ccc;
+    border-right:solid 2px #ccc;
+
+}
 
 
 

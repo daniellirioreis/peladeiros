@@ -1,4 +1,4 @@
-<h2>Listing places</h2>
+<h2>listagem lugares </h2>
 
 <table class="records">
   <tr>
@@ -22,10 +22,9 @@
     <td><%= link_to 'Destroy', place, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
-  <tfooter>
-    <%= will_paginate @places if @places.respond_to?(:total_pages) %>
-  </tfooter>
 </table>
+<%= will_paginate @places if @places.respond_to?(:total_pages) %>
+
 <br />
-<%= link_to 'New Place', new_place_path %>
+<%= link_to 'Novo Lugar', new_place_path %>
 

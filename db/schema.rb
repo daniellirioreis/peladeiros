@@ -10,10 +10,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111020204601) do
+ActiveRecord::Schema.define(:version => 20111202012700) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "companies_users", :id => false, :force => true do |t|
+    t.integer "company_id"
+    t.integer "user_id"
+  end
+
+  create_table "games", :force => true do |t|
+    t.integer  "company_id"
+    t.string   "name"
+    t.date     "date"
+    t.time     "hour_start"
+    t.time     "hour_end"
+    t.integer  "place"
+    t.integer  "number_team"
+    t.integer  "status"
+    t.integer  "number_of_players_in_team"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -40,6 +60,7 @@ ActiveRecord::Schema.define(:version => 20111020204601) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "company_default_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
