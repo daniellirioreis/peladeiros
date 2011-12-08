@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      company:
+        one: "Clube"
+        other: "Clubes"
+
+    attributes:
+      company:
+        name: "Nome"

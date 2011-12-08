@@ -1,13 +1,28 @@
+# encoding: utf-8
 class GamesController < ApplicationController
+  before_filter :authenticate_user!  
+  
   # GET /games
   # GET /games.xml
   def index
-    @games = Game.for_company_id(current_company.id).ordered.paginate(:per_page => 2, :page => params[:page])
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @games }
+    unless current_company == nil
+      @games = Game.for_status(1).for_company_id(current_company.id).ordered.paginate(:per_page => 5, :page => params[:page])
+    else
+      flash[:alert] = "Acesse 'Meu perfil' e defina um clube padrão para fazer pesquisar de jogos."      
+      redirect_to dashboard_path
     end
+  end
+  
+  def closed
+    @game = Game.find(params[:id])
+    respond_to do |format|
+      if @game.closed
+        format.html { redirect_to(games_path, :notice => 'Jogo fechado com sucesso.') }
+      else
+        format.html { redirect_to(games_path, :alert => @game.errors.full_messages) }
+      end
+    end
+    
   end
 
   # GET /games/1
@@ -43,11 +58,11 @@ class GamesController < ApplicationController
   # POST /games.xml
   def create
     @game = Game.new(params[:game])
-
+    @game.status = 1
     respond_to do |format|
       if @game.save
-        format.html { redirect_to(@game, :notice => 'Game was successfully created.') }
-        format.xml  { render :xml => @game, :status => :created, :location => @game }
+        @game.send_email    
+        format.html { redirect_to(games_path, :notice => 'Jogo criado com sucesso.') }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @game.errors, :status => :unprocessable_entity }
@@ -59,10 +74,10 @@ class GamesController < ApplicationController
   # PUT /games/1.xml
   def update
     @game = Game.find(params[:id])
-
+    @game.status = 1
     respond_to do |format|
       if @game.update_attributes(params[:game])
-        format.html { redirect_to(@game, :notice => 'Game was successfully updated.') }
+        format.html { redirect_to(games_path, :notice => 'Jogo atualizado com sucesso.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

@@ -1,4 +1,6 @@
 class CompaniesController < ApplicationController
+  before_filter :authenticate_user!  
+
   # GET /companies
   # GET /companies.xml
   def index
@@ -44,8 +46,7 @@ class CompaniesController < ApplicationController
 
     respond_to do |format|
       if @company.save
-        format.html { redirect_to(@company, :notice => 'Company was successfully created.') }
-        format.xml  { render :xml => @company, :status => :created, :location => @company }
+        format.html { redirect_to(companies_path, :notice => 'Clube criado com sucesso.') }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @company.errors, :status => :unprocessable_entity }
@@ -60,7 +61,7 @@ class CompaniesController < ApplicationController
 
     respond_to do |format|
       if @company.update_attributes(params[:company])
-        format.html { redirect_to(@company, :notice => 'Company was successfully updated.') }
+        format.html { redirect_to(companies_path, :notice => 'Clube atualizado com sucesso.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

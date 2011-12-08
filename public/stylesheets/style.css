@@ -354,13 +354,15 @@ textarea {
 
 .mensagem{
     margin:auto;
-    background:white;
-    color: green; 
+    color: black;
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
     padding:0 5px 5px 5px;
     margin:5px 0 0 0;
-    width:auto;           
+    width:auto; 
+    border:solid 1px silver;
+    
+              
 }
 
 .mensagem_icones{
@@ -378,6 +380,10 @@ textarea {
   width:auto;
   border:solid 1px #ccc;
   
+}
+
+.fieldWithErrors {
+    display: inline;
 }
 
 .pagination{

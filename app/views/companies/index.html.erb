@@ -2,7 +2,7 @@
 
 <table class='records'>
   <tr>
-    <th>Name</th>
+    <th>Nome</th>
     <th COLSPAN="3"> Ações</th>
   </tr>
 
@@ -10,9 +10,9 @@
   <tr>
     <td><%= company.name %></td>
     <td>
-        <%= link_to 'Show', company %>
-        <%= link_to 'Edit', edit_company_path(company) %>
-        <%= link_to 'Destroy', company, :confirm => 'Are you sure?', :method => :delete %>
+        <%= link_to 'Ver', company %>
+        <%= link_to 'Editar', edit_company_path(company) %>
+        <%= link_to 'Apagar', company, :confirm => 'Confirma Exclusão?', :method => :delete %>
     </td>
   </tr>
 <% end %>
@@ -22,4 +22,4 @@
 
 <br />
 
-<%= link_to 'New Company', new_company_path %>
+<%= link_to 'Novo Clube', new_company_path %>

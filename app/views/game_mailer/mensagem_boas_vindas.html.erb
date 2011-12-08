@@ -1,0 +1,85 @@
+<%= stylesheet_link_tag 'table' %>
+<h1>
+  Olá <%= @user.email %>
+</h1>
+<p>
+  <% if  @game.status == 1 %>
+    Um novo jogo foi adicionado em clube que você está vínculado: 
+  <%else%>
+    Jogo já está fechado aguardamos você <br/>
+    Bom Jogo!
+  <% end %>
+</p>
+<p align = 'center'>
+<table border = '1' width = '60%' >
+  <thead>
+    <tr>
+      <th>
+        <%= Game.human_attribute_name :name %>
+      </th>        
+      <th>
+        <%= Game.human_attribute_name :date %>
+      </th>
+      <th>
+        <%= Game.human_attribute_name :hour_start %>
+      </th>        
+
+      <th>
+        <%= Game.human_attribute_name :hour_end  %>
+      </th>
+      <th>
+        <%= Place.human_attribute_name :place %>
+      </th>
+      <th>
+        <%= Place.human_attribute_name :city %>
+      </th>
+      
+      <th>
+        <%= Place.human_attribute_name :description %>
+      </th>
+      
+    </tr>
+  </thead>
+  <tbody>
+   <tr>
+      <td>
+        <%=@game.name %>
+      </td>
+      <td>
+        <%= l @game.date %>
+      </td>        
+      <td>
+        <%= l @game.hour_start, :format => :time %>
+      </td>
+      <td>
+        <%= l @game.hour_end, :format => :time %>
+      </td>
+      <td>
+        <%=  @game.place_now %>
+      </td>
+      <td>
+        <%=  @city %>
+      </td>
+      <td>
+        <%= @address %>
+      </td>     
+   </tr>
+        
+ </tbody>        
+</table>   
+</p>
+<% if @game.status == 1  %>
+  <p>
+    Se deseja confirma sua presença acesse <%= @site%>
+  </p>
+<% end %>
+<% if @game.status == 2  %>
+  <p align = 'center'>
+    <h2>Membros escalado para jogo:</h2>
+    <ul>
+      <% @escalations.each do |e|%>
+        <li><%= e.user.email %></li>    
+      <% end %>
+    </ul>
+  </p>
+<% end %>

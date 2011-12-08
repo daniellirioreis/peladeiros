@@ -1,10 +1,18 @@
 <%= form_for(@company) do |f| %>
+<% if @company.errors.any? %>
+  <div id="error_explanation">
+    <h3> Erro(s) encontrado(s)</h3>
+    <% @company.errors.full_messages.each do |msg| %>
+      <p><%= "* #{msg}" %></p>
+    <% end %>
+  </div>
+<% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name, "Nome" %><br />
     <%= f.text_field :name %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Criar Clube'%>
   </div>
 <% end %>

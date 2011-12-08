@@ -1,7 +1,8 @@
 <div class="mensagem" onclick="$(this).remove()">
-  <ul>
+  <%= image_tag "mensagens/#{type}.png", :class => 'mensagem_icones' %>
     <% Array.wrap(flash[type]).each do |message| %>
-      <li><%= message %></li>
+      <p>
+        <%= "#{message}" %>
+      </p>
     <% end %>
-  </ul>
 </div>

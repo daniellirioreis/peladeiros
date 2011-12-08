@@ -9,6 +9,6 @@ class ApplicationController < ActionController::Base
   end
 
   def current_company
-    current_user.company_default
+    current_user.company_default unless current_user.company_default == nil
   end
 end

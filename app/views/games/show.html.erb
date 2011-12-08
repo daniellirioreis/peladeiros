@@ -1,55 +1,71 @@
-<p id="notice"><%= notice %></p>
+<fieldset>
+  <legend><%= image_tag('/images/buttons/game.png')%>  
+  Informações do Jogo</legend>
+  <table width="90%">
+    <tr>
+      <td width="120px">
+        <b>Jogo do Clube:</b>
+        <%= @game.company %>
+      </td>
+      <td width="80px">
+        <b>Nome:</b>
+        <%= @game.name %>        
+      </td>
+    </tr>
+    <tr>
+      <td width="120px">
+        <b>Data:</b>
+        <%=l @game.date %>
+      </td>
+      <td width="80px">
+        <b>Período:</b>
+        <%= l @game.hour_start , :format => :time%> à
+        <%= l @game.hour_end  , :format => :time%>
+      </td>
+    </tr>    
+    <tr>
+      <td width="120px">
+        <b>Lugar:</b>
+        <%= @game.place %>
+      </td>
+    </tr>    
+    <tr>
+      <td width="120px">
+        <b>Número de times:</b>
+        <%= @game.number_team %>
+      </td>
+      <td width="80px">
+        <b>Número de jogadores no time:</b>
+        <%= @game.number_of_players_in_team %>
+      </td>
+    </tr>    
+    <tr>
+      <td width="120px">
+        <b>Status:</b>
+        <%= @game.status == 1 ? "Aberto" : "Fechado" %>      
+      </td>
+    </tr>    
+    <tr>
+      <td width="120px">
+        <b>Responsável:</b>
+        <%= @game.user %>      
+      </td>
+    </tr>    
+  </table>
+</fieldset>
+<br/>
+<fieldset>
+  <legend><%= image_tag('/images/buttons/group.png')%>  
+  Convocação</legend>
+    <% if @game.escalations.any? %>
+      <% @game.escalations.each do |e| %>
+        <%= " * #{e.user}" %><br/>
+      <% end %>
+    <% else %>
+      Jogo não possuem convocação.
+    <% end %>
+</fieldset>
 
-<p>
-  <b>Company:</b>
-  <%= @game.company_id %>
-</p>
 
-<p>
-  <b>Name:</b>
-  <%= @game.name %>
-</p>
-
-<p>
-  <b>Date:</b>
-  <%= @game.date %>
-</p>
-
-<p>
-  <b>Hour start:</b>
-  <%= @game.hour_start %>
-</p>
-
-<p>
-  <b>Hour end:</b>
-  <%= @game.hour_end %>
-</p>
-
-<p>
-  <b>Place:</b>
-  <%= @game.place %>
-</p>
-
-<p>
-  <b>Number team:</b>
-  <%= @game.number_team %>
-</p>
-
-<p>
-  <b>Status:</b>
-  <%= @game.status %>
-</p>
-
-<p>
-  <b>Number of players in team:</b>
-  <%= @game.number_of_players_in_team %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%= @game.user_id %>
-</p>
-
-
-<%= link_to 'Edit', edit_game_path(@game) %> |
-<%= link_to 'Back', games_path %>
+<%= link_to 'Editar', edit_game_path(@game)  if @game.status == 1%> |
+<%= link_to 'Voltar para listagem de jogos', games_path %>

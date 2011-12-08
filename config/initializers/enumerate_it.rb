@@ -1,1 +1,1 @@
-ActiveRecord::Base.send :include, EnumerateIt
+ActiveRecord::Base.__send__(:include, EnumerateIt)

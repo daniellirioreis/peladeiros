@@ -1,0 +1,19 @@
+pt-BR:
+  activerecord:
+    models:
+      game:
+        one: "Jogo"
+        other: "Jogos"
+
+    attributes:
+      game:
+        id: "Jogo"
+        name: "Nome"
+        company_id: "Clube"
+        user: "Responsável"
+        place: "Lugar"
+        number_team: "Número de times"
+        number_of_players_in_team: "Número de jogadores no time"
+        hour_start: 'Hora Inícial'
+        hour_end: 'Hora Final'
+        date: "Data"

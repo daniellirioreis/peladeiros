@@ -1,0 +1,13 @@
+pt-BR:
+  activerecord:
+    models:
+      escalation:
+        one: "Convocação"
+        other: "Convocações"
+
+    attributes:
+      escalation:
+        user: "Membro"
+        game: "Jogo"
+        user_id: "Membro"
+        game_id: "Jogo"

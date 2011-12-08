@@ -10,7 +10,6 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :companies, :join_table => "companies_users", :foreign_key => 'user_id'
   
 #  validate :have_only_company
-  before_create :copy_all_companies
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :company_ids, :company_default_id
@@ -23,13 +22,7 @@ class User < ActiveRecord::Base
   protected
     def have_only_company
       errors.add(:companies, "não foi informada") unless company_ids.any?             
-    end
-    
-    def copy_all_companies
-      Company.all.each do |c|
-        self.companies << c
-      end
-    end
+    end    
 end
 
   

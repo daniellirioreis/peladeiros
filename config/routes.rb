@@ -1,7 +1,13 @@
 Teste::Application.routes.draw do
 
-  resources :games
-
+  resources :escalations
+  
+  resources :games do
+    member do
+      get :closed
+    end
+  end
+  
   devise_for :users do
     root :to => 'devise/sessions#new'
   end

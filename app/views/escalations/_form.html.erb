@@ -1,0 +1,25 @@
+<%= form_for(@escalation) do |f| %>
+<% if @escalation.errors.any? %>
+  <div id="error_explanation">
+    <h3> Erro(s) encontrado(s)</h3>
+    <% @escalation.errors.full_messages.each do |msg| %>
+      <p><%= "* #{msg}" %></p>
+    <% end %>
+  </div>
+<% end %>
+<div class="field">
+  <%= f.label :user_id, 'Membro' %><br />
+  <%= f.hidden_field :user_id, :value => @escalation.user.id %>        
+  <%= f.text_field :user_id, :value => @escalation.user , :disabled => true %>
+</div>
+<div class="field">
+  <%= f.label :game_id, 'Jogo' %><br />
+  <%= f.hidden_field :game_id, :value => @escalation.game.id %>        
+  <%= f.text_field :game_id, :value => @escalation.game , :disabled => true %>
+</div>
+
+
+  <div class="actions">
+    <%= f.submit 'Confirmar prenseça no jogo'%>
+  </div>
+<% end %>

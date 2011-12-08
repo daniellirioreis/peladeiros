@@ -29,7 +29,7 @@ Teste::Application.configure do
       :address              => "smtp.gmail.com",
       :port                 => 587,
       :user_name            => 'nakeds.suport@gmail.com',
-      :password             => 'Daniel120188',
+      :password             => '120188120186',
       :authentication       => 'plain',
       :enable_starttls_auto => true  }
 

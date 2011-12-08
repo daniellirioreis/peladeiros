@@ -1,0 +1,13 @@
+pt-BR:
+  activerecord:
+    models:
+      place:
+        one: "Lugar"
+        other: "Lugar"
+
+    attributes:
+      place:
+        city: "Cidade"
+        description: "Endereço"
+        name: "Nome"
+        responsable: "Responsável"

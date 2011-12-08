@@ -1,6 +1,7 @@
 <%= form_for(@game) do |f| %>
   <% if @game.errors.any? %>
     <div id="error_explanation">
+      <h3> Erro(s) encontrado(s)</h3>
       <% @game.errors.full_messages.each do |msg| %>
         <p><%= "* #{msg}" %></p>
       <% end %>
@@ -8,44 +9,40 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :company_id %><br />
+    <%= f.label :company_id, "Clube" %><br />
     <%= f.hidden_field :company_id, :value => @game.company.id %>    
     <%= f.text_field :company_id, :value => @game.company, :disabled => true %>
   </div>
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name, "Nome" %><br />
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :date %><br />
+    <%= f.label :date , "Data"%><br />
     <%= f.date_select :date %>
   </div>
   <div class="field">
-    <%= f.label :hour_start %><br />
+    <%= f.label :hour_start, "Hora Inícial" %><br />
     <%= f.time_select :hour_start %>
   </div>
   <div class="field">
-    <%= f.label :hour_end %><br />
+    <%= f.label :hour_end, "Hora final" %><br />
     <%= f.time_select :hour_end %>
   </div>
   <div class="field">
-    <%= f.label :place %><br />
+    <%= f.label :place , 'Lugar'%><br />
     <%= f.select :place , Place.all.collect{|p| [p.name, p.id]}, {:prompt => 'Selecione'} %>
   </div>
   <div class="field">
-    <%= f.label :number_team %><br />
+    <%= f.label :number_team, "Número de Times" %><br />
     <%= f.text_field :number_team %>
   </div>
   <div class="field">
-    <%= f.label :status %><br />
-    <%= f.text_field :status %>
-  </div>
-  <div class="field">
-    <%= f.label :number_of_players_in_team %><br />
+    <%= f.label :number_of_players_in_team, 'Número de jogadores no time' %><br />
     <%= f.text_field :number_of_players_in_team %>
   </div>
   <div class="field">
-    <%= f.label :user_id %><br />
+    <%= f.label :user_id, 'Responsável' %><br />
     <%= f.hidden_field :user_id, :value => @game.user.id %>        
     <%= f.text_field :user_id, :value => @game.user , :disabled => true %>
   </div>
