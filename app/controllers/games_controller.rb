@@ -74,7 +74,6 @@ class GamesController < ApplicationController
   # PUT /games/1.xml
   def update
     @game = Game.find(params[:id])
-    @game.status = 1
     respond_to do |format|
       if @game.update_attributes(params[:game])
         format.html { redirect_to(games_path, :notice => 'Jogo atualizado com sucesso.') }
