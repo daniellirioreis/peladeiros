@@ -1,5 +1,6 @@
 # encoding: utf-8
 class CalendarsController < ApplicationController
+  before_filter :authenticate_user!    
   # GET /calendars
   # GET /calendars.xml
   def index
