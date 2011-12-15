@@ -1,0 +1,6 @@
+<h2>Editar Calendário</h2>
+
+<%= render 'form' %>
+
+<%= link_to 'Ver', @calendar %> |
+<%= link_to 'Voltar para listagem de calendários', calendars_path(:company_id => @calendar.company_id) %>

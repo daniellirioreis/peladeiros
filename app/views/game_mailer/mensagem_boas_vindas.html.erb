@@ -18,7 +18,7 @@
         <%= Game.human_attribute_name :name %>
       </th>        
       <th>
-        <%= Game.human_attribute_name :date %>
+        <%= Game.human_attribute_name :day_id %>
       </th>
       <th>
         <%= Game.human_attribute_name :hour_start %>
@@ -28,7 +28,7 @@
         <%= Game.human_attribute_name :hour_end  %>
       </th>
       <th>
-        <%= Place.human_attribute_name :place %>
+        <%= Game.human_attribute_name :place %>
       </th>
       <th>
         <%= Place.human_attribute_name :city %>
@@ -46,7 +46,7 @@
         <%=@game.name %>
       </td>
       <td>
-        <%= l @game.date %>
+        <%= @game.day %>
       </td>        
       <td>
         <%= l @game.hour_start, :format => :time %>

@@ -1,3 +1,4 @@
+<h2><%= @game.id %></h2>
 <fieldset>
   <legend><%= image_tag('/images/buttons/game.png')%>  
   Informações do Jogo</legend>
@@ -14,8 +15,8 @@
     </tr>
     <tr>
       <td width="120px">
-        <b>Data:</b>
-        <%=l @game.date %>
+        <b>Dia:</b>
+        <%=l @game.day.date %>
       </td>
       <td width="80px">
         <b>Período:</b>
@@ -66,6 +67,6 @@
     <% end %>
 </fieldset>
 
-
-<%= link_to 'Editar', edit_game_path(@game)  if @game.status == 1%> |
+<br/>
+<%= link_to 'Editar', edit_game_path(@game)  if @game.status == 1%> 
 <%= link_to 'Voltar para listagem de jogos', games_path %>

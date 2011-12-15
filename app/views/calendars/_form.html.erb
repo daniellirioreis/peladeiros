@@ -1,0 +1,27 @@
+<%= form_for(@calendar) do |f| %>
+  <% if @calendar.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% @calendar.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :company_id %><br />
+    <%= f.hidden_field :company_id, :value =>@calendar.company.id %>            
+    <%= f.text_field :company_id , :value => @calendar.company, :disabled => true %>
+  </div>
+  <div class="field">
+    <%= f.label :date_start %><br />
+    <%= f.date_select :date_start %>
+  </div>
+  <div class="field">
+    <%= f.label :date_end %><br />
+    <%= f.date_select :date_end %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

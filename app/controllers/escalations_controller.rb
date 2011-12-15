@@ -6,7 +6,7 @@ class EscalationsController < ApplicationController
   def index
     
     unless current_company == nil
-      @games = Game.for_status(1).for_company_id(current_company.id).ordered.paginate(:per_page => 2, :page => params[:page])
+      @games = Game.for_status(0).for_company_id(current_company.id).paginate(:per_page => 2, :page => params[:page])
     else
       flash[:alert] = "Acesse 'Meu perfil' e defina um clube padrão para fazer pesquisar de jogos."
       

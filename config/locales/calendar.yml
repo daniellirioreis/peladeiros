@@ -1,0 +1,12 @@
+pt-BR:
+  activerecord:
+    models:
+      calendar:
+        one: "Calendário"
+        other: "Calendários"
+
+    attributes:
+      calendar:
+        date_start: "Data Inicial"
+        date_end: "Data Fim"
+        company_id: "Clube"

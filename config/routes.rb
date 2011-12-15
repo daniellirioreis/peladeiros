@@ -1,5 +1,7 @@
 Teste::Application.routes.draw do
 
+  resources :calendars
+
   resources :escalations
   
   resources :games do

@@ -1,0 +1,22 @@
+<h2>Listagem de Calendários</h2>
+
+<table class= "records">
+  <tr>
+    <th>Clube</th>
+    <th>Data Início</th>
+    <th>Data Fim</th>
+    <th COLSPAN="3" align='left'>Ação</th>    
+  </tr>
+
+<% @calendars.each do |calendar| %>
+  <tr>
+    <td><%= calendar.company %></td>
+    <td><%= l  calendar.date_start %></td>
+    <td><%= l calendar.date_end %></td>
+    <td>
+      <%= link_to 'Editar', edit_calendar_path(calendar) %>
+      <%= link_to 'Apagar', calendar, :confirm => 'Confirma exclusão?', :method => :delete %>
+    </td>
+  </tr>
+<% end %>
+</table>

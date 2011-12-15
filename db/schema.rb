@@ -10,7 +10,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111204031059) do
+ActiveRecord::Schema.define(:version => 20111215021947) do
+
+  create_table "calendar_days", :force => true do |t|
+    t.integer  "calendar_id"
+    t.date     "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "calendars", :force => true do |t|
+    t.integer  "company_id"
+    t.date     "date_start"
+    t.date     "date_end"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -33,7 +48,6 @@ ActiveRecord::Schema.define(:version => 20111204031059) do
   create_table "games", :force => true do |t|
     t.integer  "company_id"
     t.string   "name"
-    t.date     "date"
     t.time     "hour_start"
     t.time     "hour_end"
     t.integer  "place"
@@ -43,6 +57,7 @@ ActiveRecord::Schema.define(:version => 20111204031059) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "day_id"
   end
 
   create_table "places", :force => true do |t|

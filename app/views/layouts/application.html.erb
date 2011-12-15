@@ -42,13 +42,14 @@
         <div class="sidebar">
           <div class="gadget">
             <h2 class="star"><%= current_company%></h2>
-            <h5 class="star"><%= "Olá! #{current_user} seja bem vindo ao Nakeds"%></h5>
-            
+            <fieldset>
+              <h5 class="star"><%= "Olá! #{current_user}, Seja bem vindo ao Nakeds."%></h5>
+            </fieldset>
             <div class="clr"></div>
             <ul class="sb_menu">
               <li>
                 <%= image_tag('/images/buttons/exit.png')%>    
-                <%= link_to 'Logout', destroy_user_session_path, :confirm => 'logout confirm' %>           </li>
+                <%= link_to 'Logout', destroy_user_session_path, :confirm => 'logout confirm' %>          
               </li>
               
               <li>

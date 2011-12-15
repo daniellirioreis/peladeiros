@@ -52,7 +52,33 @@ h2 {
 	font:normal 25px/1.2em Arial, Helvetica, sans-serif;
 	letter-spacing:-3px;
 	text-transform:uppercase;
+	color: silver;
+  background-image: -moz-linear-gradient(center top, #f7f7f7, #f7f7f7);
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f7f7f7), to(#f7f7f7));
+  -pie-background: linear-gradient(center top, #f7f7f7, #f7f7f7);
+  box-shadow: 0px 0px 0px white;
+  -moz-box-shadow: 0px 0px 0px white;
+  -webkit-box-shadow: 0px 0px 0px white;
+  font-weight: normal;
+  
 }
+.botao{/*input botão sistema*/
+       -moz-border-radius:5px;
+       -webkit-border-radius:5px;
+       border:solid 1px #ccc;
+       border-bottom:solid 2px #666;
+       border-left:solid 1px #666;
+       background: transparent url(/images/inputs/botao.png) repeat-x;
+       font-size:12px;
+       padding:2px 4px 2px  4px;
+       margin:5px 5px 5px 0;
+       text-shadow: 1px 1px 2px #ccc;
+}
+
+
+
+
+
 p {
 	margin:8px 0;
 	padding:0 0 8px 0;
@@ -412,7 +438,6 @@ legend{
     border-right:solid 2px #ccc;
 
 }
-
 
 
 

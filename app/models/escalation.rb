@@ -8,4 +8,8 @@ class Escalation < ActiveRecord::Base
   def to_s
     user if user.present?
   end
+  
+  def date
+    game.day if game.present?
+  end
 end

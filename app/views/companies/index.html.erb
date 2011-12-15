@@ -10,8 +10,13 @@
   <tr>
     <td><%= company.name %></td>
     <td>
-        <%= link_to 'Ver', company %>
-        <%= link_to 'Editar', edit_company_path(company) %>
+        <% if company.calendar.present? %>
+          <%= link_to 'Ver calendário', calendars_path(:company_id => company.id) %> |              
+        <% else %>
+          <%= link_to 'Criar Calendario', new_calendar_path(:company_id => company.id) %> |                      
+        <% end %>          
+        <%= link_to 'Ver', company %> |
+        <%= link_to 'Editar', edit_company_path(company) %> |
         <%= link_to 'Apagar', company, :confirm => 'Confirma Exclusão?', :method => :delete %>
     </td>
   </tr>

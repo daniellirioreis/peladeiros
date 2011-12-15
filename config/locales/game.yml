@@ -10,6 +10,7 @@ pt-BR:
         id: "Jogo"
         name: "Nome"
         company_id: "Clube"
+        day_id: "Dia"
         user: "Responsável"
         place: "Lugar"
         number_team: "Número de times"

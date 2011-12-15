@@ -6,7 +6,7 @@ class GamesController < ApplicationController
   # GET /games.xml
   def index
     unless current_company == nil
-      @games = Game.for_status(1).for_company_id(current_company.id).ordered.paginate(:per_page => 5, :page => params[:page])
+      @games = Game.for_company_id(current_company.id).paginate(:per_page => 5, :page => params[:page])
     else
       flash[:alert] = "Acesse 'Meu perfil' e defina um clube padrão para fazer pesquisar de jogos."      
       redirect_to dashboard_path
@@ -58,7 +58,7 @@ class GamesController < ApplicationController
   # POST /games.xml
   def create
     @game = Game.new(params[:game])
-    @game.status = 1
+    @game.status = 0
     respond_to do |format|
       if @game.save
         @game.send_email    

@@ -3,8 +3,9 @@ class Game < ActiveRecord::Base
   belongs_to :company, :class_name => "Company", :foreign_key => "company_id"
   belongs_to :user, :class_name => "User", :foreign_key => "user_id"
   belongs_to :place_now, :class_name => "Place", :foreign_key => "place"
-  
+  belongs_to :day, :class_name => "Calendar::Day", :foreign_key => "day_id"
   validates_presence_of :company_id
+  validates_presence_of :day_id
   validates_presence_of :user
   validates_presence_of :place
   validates_presence_of :name
@@ -25,6 +26,38 @@ class Game < ActiveRecord::Base
   def to_s
     name.to_s if name
     
+  end
+  
+  def weekday
+    w = nil      
+    if day.date.wday == 1 
+      w = "Segunda"
+    end
+    
+    if day.date.wday == 2
+       w = "Terça"
+    end
+
+    if day.date.wday == 3
+      w = "Quarta"
+    end
+
+    if day.date.wday == 4
+       w = "Quinta"
+    end
+   
+    if day.date.wday == 5
+      w = "Sexta"
+    end
+
+    if day.date.wday == 6
+      w = "Sábado"
+    end
+
+    if day.date.wday == 0
+      w = "Domingo"
+    end
+      w
   end
   
   def closed
