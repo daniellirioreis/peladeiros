@@ -24,7 +24,10 @@
       </tr>
     <% end %>
     <tr>
-      <td align="center"><%= link_to 'Clique aqui para confirmar presença', new_escalation_path(:game_id => game.id) %></td>
+      <td align="center">
+        <%= image_tag('/images/buttons/group.png')%>  
+        <%= link_to 'Confirmar presença', new_escalation_path(:game_id => game.id) %>
+      </td>
       <td></td>    
     </tr>  
     </table>      
