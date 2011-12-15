@@ -1,7 +1,7 @@
 # encoding: utf-8
 class GamesController < ApplicationController
   before_filter :authenticate_user!  
-  
+  before_filter :company_have_calendar
   # GET /games
   # GET /games.xml
   def index
@@ -97,4 +97,14 @@ class GamesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  protected
+  
+  def company_have_calendar
+    unless current_company.calendar.present?
+      flash[:alert] = 'Jogos não pode ser criado. É necessário definido um calendário'
+      redirect_to dashboard_path
+    end          
+  end
+  
 end
