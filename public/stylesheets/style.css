@@ -195,7 +195,7 @@ a {
 }
 .content .sidebar .gadget {
 	margin:0 0 8px 0;
-	padding:16px 16px 16px 40px;
+	padding:-1px 16px 16px 40px;
 }
 ul.sb_menu, ul.ex_menu {
 	margin:0;
