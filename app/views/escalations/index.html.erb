@@ -7,7 +7,10 @@
       <b>Data:</b> <%= l game.day.date%>
       | <b>Hora:</b> <%= l game.hour_start , :format => :time%> à
       <%= l game.hour_end  , :format => :time%>    
-      | <b> Lugar:</b> <%= game.place_now.name%>
+      | <b> Lugar:</b> <%= game.place_now.name%> |
+        <b> Endereço:</b> <%= game.place_now.description%> |
+        <b> Cidade:</b> <%= game.place_now.city%>
+      
     
     </p>
     <table class='records'>
