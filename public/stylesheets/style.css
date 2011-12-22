@@ -220,11 +220,11 @@ ul.sb_menu li a, ul.ex_menu li a {
 	padding-left:12px;
 }
 ul.sb_menu li a:hover, ul.ex_menu li a:hover {
-	color:#de484d;
+	color:purple;
 	font-weight:bold;
 }
 ul.sb_menu li a:hover {
-	text-decoration:underline;
+	text-decoration:blink;
 }
 ul.ex_menu li a:hover {
 	text-decoration:none;

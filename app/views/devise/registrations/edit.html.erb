@@ -6,6 +6,11 @@
   <p><%= f.label :email, 'Email' %><br />
   <%= f.email_field :email %></p>
 
+  <p>
+    <%= f.check_box :adm %>
+    <%= f.label :adm, 'Admin' %>  
+  </p>
+
   <p><%= f.label :password, "Senha" %> <i>(deixe em branco se você não quer mudá-lo)</i><br />
   <%= f.password_field :password %></p>
 
@@ -13,7 +18,9 @@
   <%= f.password_field :password_confirmation %></p>
 
   <p><%= f.label :current_password, "Senha corrente" %> <i>(precisamos de sua senha atual para confirmar as alterações)</i><br />
-  <%= f.password_field :current_password %></p>
+  <%= f.password_field :current_password %>
+  </p>
+  
 <fieldset>
   <legend>Escolha o seus clubes</legend>
   <p>
@@ -48,4 +55,5 @@
 
 <p>infeliz? <%= link_to "Cancelar minha conta", registration_path(resource_name), :confirm => "Confirma exclusão?", :method => :delete %>.</p>
 
-<%= link_to "Voltar", :back, :class => 'botao' %>
+<%= link_to image_tag('/images/buttons/back.png'), dashboard_path %>
+

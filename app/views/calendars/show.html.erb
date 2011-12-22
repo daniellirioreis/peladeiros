@@ -1,20 +1,20 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Company:</b>
-  <%= @calendar.company_id %>
+  <b>Clube:</b>
+  <%= @calendar.company %>
 </p>
 
 <p>
-  <b>Date start:</b>
-  <%= @calendar.date_start %>
+  <b>Data Início:</b>
+  <%= l @calendar.date_start %>
 </p>
 
 <p>
-  <b>Date end:</b>
-  <%= @calendar.date_end %>
+  <b>Data Fim:</b>
+  <%= l @calendar.date_end %>
 </p>
 
 
-<%= link_to 'Edit', edit_calendar_path(@calendar) %> |
-<%= link_to 'Back', calendars_path %>
+<%= link_to image_tag('/images/buttons/edit.png'), edit_calendar_path(@calendar) %> 
+<%= link_to image_tag('/images/buttons/back.png'), calendars_path(:company_id => @calendar.company_id) %>

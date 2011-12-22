@@ -11,3 +11,4 @@ pt-BR:
         description: "Endereço"
         name: "Nome"
         responsable: "Responsável"
+        phone: "Telefone"

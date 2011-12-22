@@ -1,7 +1,7 @@
 # encoding: utf-8
 class EscalationsController < ApplicationController
   before_filter :authenticate_user!  
-  
+  before_filter :company_have_games
   
   def index
     
@@ -37,6 +37,15 @@ class EscalationsController < ApplicationController
         format.xml  { render :xml => @escalation.errors, :status => :unprocessable_entity }
       end
     end
+  end
+  
+  protected
+  
+  def company_have_games
+    unless current_company.games.present?
+      flash[:alert] = 'Não existem jogos cadastrados'
+      redirect_to dashboard_path
+    end          
   end
   
   

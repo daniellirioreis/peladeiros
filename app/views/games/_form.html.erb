@@ -47,8 +47,9 @@
     <%= f.hidden_field :user_id, :value => @game.user.id %>        
     <%= f.text_field :user_id, :value => @game.user , :disabled => true %>
   </div>
+
   <div class="actions">
-    <%= f.submit 'Salvar', :disable_with => 'Salvando ...', :class => 'botao' %>
-    <%= link_to 'Voltar para Listagem de Jogos', games_path , :class => 'botao' %>    
+    <%= f.submit %>
   </div>
+
 <% end %>

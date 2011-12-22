@@ -14,8 +14,8 @@
     <td><%= l  calendar.date_start %></td>
     <td><%= l calendar.date_end %></td>
     <td>
-      <%= link_to 'Editar', edit_calendar_path(calendar) %>
-      <%= link_to 'Apagar', calendar, :confirm => 'Confirma exclusão?', :method => :delete %>
+      <%= link_to image_tag('/images/buttons/edit.png'), edit_calendar_path(calendar) %>
+      <%= link_to image_tag('/images/buttons/delete.png'), calendar, :confirm => 'Confirma exclusão?', :method => :delete %>
     </td>
   </tr>
 <% end %>

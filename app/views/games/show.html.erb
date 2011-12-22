@@ -27,7 +27,12 @@
     <tr>
       <td width="120px">
         <b>Lugar:</b>
-        <%= @game.place %>
+        <%= @game.place_now %><br/>
+        <b>Endereço</b>
+        <%= @game.place_now.description%>,
+        <%= @game.place_now.city%><br/>
+        <b>Telefone:</b>
+        <%= @game.place_now.phone%>        
       </td>
     </tr>    
     <tr>

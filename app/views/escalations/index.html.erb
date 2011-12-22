@@ -10,8 +10,6 @@
       | <b> Lugar:</b> <%= game.place_now.name%> |
         <b> Endereço:</b> <%= game.place_now.description%> |
         <b> Cidade:</b> <%= game.place_now.city%>
-      
-    
     </p>
     <table class='records'>
       <tr>
@@ -28,7 +26,7 @@
     <% end %>
     <tr>
       <td align="center">
-        <%= link_to image_tag('/images/buttons/group.png'), new_escalation_path(:game_id => game.id) %>
+        <%= link_to image_tag('/images/buttons/new.png'), new_escalation_path(:game_id => game.id) %>
       </td>
       <td></td>    
     </tr>  

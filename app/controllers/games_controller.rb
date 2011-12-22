@@ -101,7 +101,7 @@ class GamesController < ApplicationController
   
   def company_have_calendar
     unless current_company.calendar.present?
-      flash[:alert] = 'Jogos não pode ser criado. É necessário definido um calendário'
+      flash[:alert] = 'Jogos não pode ser criado. É necessário definir um calendário'
       redirect_to dashboard_path
     end          
   end

@@ -36,10 +36,10 @@
         <td><%= game.place_now %></td>
         <td><%= game.user %></td>
         <td>
-        <%= link_to 'Fechar jogo', closed_game_path(game.id)  if game.user.id == current_user.id %>|
-        <%= link_to 'Ver', game %>|
-        <%= link_to 'Editar', edit_game_path(game) %>|
-        <%= link_to 'Apagar', game, :confirm => 'Confirma exclusão?', :method => :delete %></td>
+        <%= link_to image_tag('/images/buttons/close.png'), closed_game_path(game.id)  if game.user.id == current_user.id %>
+        <%= link_to image_tag('/images/buttons/show.png'), game %>
+        <%= link_to image_tag('/images/buttons/edit.png'), edit_game_path(game) %>
+        <%= link_to image_tag('/images/buttons/delete.png'), game, :confirm => 'Confirma exclusão?', :method => :delete %></td>
       </tr>
     <% end %>
 </table>
@@ -47,4 +47,4 @@
 
 <br />
 
-<%= link_to 'Novo Jogo', new_game_path %>
+<%= link_to image_tag('/images/buttons/new.png'), new_game_path %>
