@@ -1,5 +1,7 @@
 <h2>listagem lugares </h2>
-
+<p align='right'>
+  <%= link_to image_tag('/images/buttons/new.png'), new_place_path %>  
+</p>
 <table class="records">
   <tr>
     <th>Cidade</th>
@@ -25,5 +27,4 @@
 <%= will_paginate @places if @places.respond_to?(:total_pages) %>
 
 <br />
-<%= link_to image_tag('/images/buttons/new.png'), new_place_path %>
 

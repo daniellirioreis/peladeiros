@@ -8,6 +8,9 @@
     Crie jogos(peladinha), automaticamente seus amigos vínculados com clube receberão email com informações sobre jogo, agora sim! só basta eles confirmarem suas presenças está formada a peladinha.
   </p>
 </fieldset>
+<p align='right'>
+  <%= link_to image_tag('/images/buttons/new.png'), new_game_path %>
+</p>
 <table class='records'>
   <tr>
     <th>Status</th>        
@@ -22,7 +25,7 @@
     <% @games.each do |game| %>
       <tr>
         <td align='center'>
-          <% if game.status == 1  %>
+          <% if game.status  == 1 %>
             <%= image_tag('/images/buttons/fechado.png')%>  
           <% else %>
             <%= image_tag('/images/buttons/aberto.png')%>            
@@ -36,7 +39,10 @@
         <td><%= game.place_now %></td>
         <td><%= game.user %></td>
         <td>
-        <%= link_to image_tag('/images/buttons/close.png'), closed_game_path(game.id)  if game.user.id == current_user.id %>
+          <%if game.user.id == current_user.id %>            
+            <%= link_to image_tag('/images/buttons/close.png'), closed_game_path(game.id) if  game.status == 0 %>         
+         <% end %>
+         
         <%= link_to image_tag('/images/buttons/show.png'), game %>
         <%= link_to image_tag('/images/buttons/edit.png'), edit_game_path(game) %>
         <%= link_to image_tag('/images/buttons/delete.png'), game, :confirm => 'Confirma exclusão?', :method => :delete %></td>
@@ -47,4 +53,3 @@
 
 <br />
 
-<%= link_to image_tag('/images/buttons/new.png'), new_game_path %>

@@ -9,13 +9,11 @@ class GameMailer < ActionMailer::Base
      @escalations = game.escalations 
      @site = "http://naked.heroku.com"
 
-     if @game.status == 1 
+     if @game.status == 0
        @mensagem = "Nakeds - Novo Jogo Cadastrado"
-      end
-
-      if @game.status == 2
-        @mensagem = "Nakeds - Jogo foi fechado"
-       end
+     else
+       @mensagem = "Nakeds - Jogo foi fechado"
+     end
         
      mail(:to => user.email,
           :subject => @mensagem)

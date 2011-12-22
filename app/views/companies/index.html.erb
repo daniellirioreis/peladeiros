@@ -1,5 +1,7 @@
 <h2>Listagem de Clubes</h2>
-
+<p align='right'>
+  <%= link_to image_tag('/images/buttons/new.png'), new_company_path %>
+</p>
 <table class='records'>
   <tr>
     <th>Nome</th>
@@ -25,5 +27,3 @@
 <%= will_paginate @companies %>
 
 <br />
-
-<%= link_to image_tag('/images/buttons/new.png'), new_company_path %>

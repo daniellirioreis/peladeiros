@@ -62,7 +62,9 @@ class Game < ActiveRecord::Base
   
   def closed
     if escalations.any?
-      self.update_attribute(:status, 2)
+      
+      self.update_attribute(:status, 1)
+      
       self.send_email        
       
       true
@@ -75,7 +77,15 @@ class Game < ActiveRecord::Base
 
 
   def send_email    
-    GameMailer.mensagem_boas_vindas(User.first, self).deliver
+     if status == 0 
+        company.users.each do |user|
+          GameMailer.mensagem_boas_vindas(user, self).deliver
+        end
+     else
+       escalations.each do |escalation| 
+         GameMailer.mensagem_boas_vindas(escalation.user, self).deliver        
+       end
+     end
   end
   
 

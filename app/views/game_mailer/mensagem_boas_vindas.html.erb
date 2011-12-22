@@ -3,7 +3,7 @@
   Olá <%= @user.email %>
 </h1>
 <p>
-  <% if  @game.status == 1 %>
+  <% if  @game.status == 0 %>
     Um novo jogo foi adicionado em clube que você está vínculado: 
   <%else%>
     Jogo já está fechado aguardamos você <br/>
@@ -68,12 +68,12 @@
  </tbody>        
 </table>   
 </p>
-<% if @game.status == 1  %>
+<% if @game.status == 0  %>
   <p>
     Se deseja confirma sua presença acesse <%= @site%>
   </p>
 <% end %>
-<% if @game.status == 2  %>
+<% if @game.status == 1  %>
   <p align = 'center'>
     <h2>Membros escalado para jogo:</h2>
     <ul>
