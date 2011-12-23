@@ -59,29 +59,30 @@
                 </li>
               <%end%>
               <li>
+                <%= image_tag('/images/buttons/game.png')%>  
+                <%= link_to 'Jogos', games_path %>
+              </li>              
+              <li>
                 <%= image_tag('/images/buttons/linking.png')%>  
                 <%= link_to 'Escolha de clube', linking_company_users_path %>
               </li>
               <li>
+                <%= image_tag('/images/buttons/group.png')%>  
+                <%= link_to 'Confirmar presença', escalations_path %>
+              </li>              
+              <li>
                 <%= image_tag('/images/buttons/place.png')%>  
                 <%= link_to 'Lugares', places_path %>
               </li>
-
-              <li>
-                <%= image_tag('/images/buttons/game.png')%>  
-                <%= link_to 'Jogos', games_path %>
-              </li>
-              
-              
               <li>
                 <%= image_tag('/images/buttons/avatar.png')%>  
                 <%= link_to 'Minha Conta', edit_user_registration_path %>
               </li>
-
               <li>
-                <%= image_tag('/images/buttons/group.png')%>  
-                <%= link_to 'Confirmar presença', escalations_path %>
+                <%= image_tag('/images/buttons/config.png')%>  
+                <%= link_to 'Config. de Conta', edit_user_registration_path %>
               </li>
+
             </ul>
           </div>
         </div>

@@ -16,6 +16,7 @@ class CalendarsController < ApplicationController
   # GET /calendars/1.xml
   def show
     @calendar = Calendar.find(params[:id])
+    @days = @calendar.days.ordered.paginate(:per_page => 31, :page => params[:page])
 
     respond_to do |format|
       format.html # show.html.erb

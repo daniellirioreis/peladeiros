@@ -19,8 +19,8 @@
     <td><%= place.description %></td>
     <td><%= place.responsable %></td>
     <td><%= place.phone %></td>    
-    <td><%= link_to image_tag('/images/buttons/edit.png'), edit_place_path(place) %></td>
-    <td><%= link_to image_tag('/images/buttons/delete.png'), place, :confirm => 'Confirma exclusão?', :method => :delete %></td>
+    <td><%= link_to image_tag('/images/buttons/edit.png'), edit_place_path(place) %>
+    <%= link_to image_tag('/images/buttons/delete.png'), place, :confirm => 'Confirma exclusão?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

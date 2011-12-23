@@ -1,19 +1,42 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Clube:</b>
-  <%= @calendar.company %>
+  <h2>
+    Calendário do clube
+    <%= @calendar.company %>
+  </h2>
 </p>
 
-<p>
-  <b>Data Início:</b>
-  <%= l @calendar.date_start %>
-</p>
 
-<p>
-  <b>Data Fim:</b>
-  <%= l @calendar.date_end %>
-</p>
+
+<table class ="records">
+  <% contador = 0 %>
+  <%@days.each do |day|%>  
+  <% if contador == 0 %>
+      <tr>
+      <%end%>
+      <%  contador = contador + 1 %>
+      <td>
+        <fieldset>
+          <%= l day.date , :format => :long %><br/>
+          <%= day.weekday %><br/>
+          <% if day.games.for_status(0).any? %>
+            <%= day.games.for_status(0).count %> 
+            <%= image_tag('/images/buttons/game.png')%>            
+          <%end%>
+        </fieldset>        
+      </td>
+      <% if contador == 7%>
+        <%contador = 0%>
+      </tr>
+    <%end%>
+  <% end %>
+</table>
+<%= will_paginate @days %>
+
+
+
+
 
 
 <%= link_to image_tag('/images/buttons/edit.png'), edit_calendar_path(@calendar) %> 
