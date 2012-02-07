@@ -2,19 +2,47 @@
 
   <h2>Meus Clubes</h2>
 
-<table class='records'>
-  <tr>
-    <th>Name</th>
-    <th COLSPAN="3"> Ações</th>
-  </tr>
 
 <% @companies.each do |company| %>
+<table class='records'>
+  <tr>
+    <th>Nome</th>
+    <th COLSPAN="3"> Entrar?</th>
+  </tr>
   <tr>
     <td><%= company.name %></td>
     <td align='center'>
-        <%= link_to image_tag('/images/buttons/arrow.png'), switch_to_company_user_path(company.id) %>
+        <%= link_to image_tag('/images/buttons/arrow.png'), switch_to_company_user_path(company.id), :title => "Entrar no clube" %>
     </td>
   </tr>
+  </table>
+  <h2 align='center'>Jogos</h2>  
+  <div id='div_over_flow_y'>
+    <table class='records'>
+      <tr>
+        <th>Status</th>        
+        <th>Data</th>
+        <th>Nome</th>
+      </tr>
+      <tr>
+      <%company.games.each do |game|%>
+      <tr>
+        <td align='center'>
+          <% if game.status  == 1 %>
+            <%= image_tag('/images/buttons/fechado.png')%>  
+          <% else %>
+            <%= image_tag('/images/buttons/aberto.png')%>            
+          <% end %>
+        </td>        
+        <td align='center'>
+          <%= game.day %>        
+        </td>
+        <td align='center'>
+          <%= game.name %>        
+        </td>        
+      </tr>
+      <%end%>
+      </table>
+  </div>
 <% end %>
-</table>
 <%= will_paginate @companies %>

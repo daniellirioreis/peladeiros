@@ -1,0 +1,50 @@
+<h3>Escolha seu clube de consulta.</h3>
+
+  <h2>Meus Clubes</h2>
+
+
+<% @companies.each do |company| %>
+<table class='records'>
+  <tr>
+    <th>Nome</th>
+    <th COLSPAN="3"> Entrar?</th>
+  </tr>
+  <tr>
+    <td><%= company.company %></td>
+    <td align='center'>
+      <%if can? :switch_to_company, 'linking_company' %>      
+        <%= link_to image_tag('/images/buttons/arrow.png'), switch_to_company_linking_company_path(company.company_id), :title => "Entrar no clube" %>
+      <%end%>
+    </td>
+  </tr>
+  </table>
+  <h2 align='center'>Jogos</h2>  
+  <div id='div_over_flow_y'>
+    <table class='records'>
+      <tr>
+        <th>Status</th>        
+        <th>Data</th>
+        <th>Nome</th>
+      </tr>
+      <tr>
+      <%company.company.games.each do |game|%>
+      <tr>
+        <td align='center'>
+          <% if game.status  == 1 %>
+            <%= image_tag('/images/buttons/fechado.png')%>  
+          <% else %>
+            <%= image_tag('/images/buttons/aberto.png')%>            
+          <% end %>
+        </td>        
+        <td align='center'>
+          <%= game.day %>        
+        </td>
+        <td align='center'>
+          <%= game.name %>        
+        </td>        
+      </tr>
+      <%end%>
+      </table>
+  </div>
+<% end %>
+<%= will_paginate @companies %>

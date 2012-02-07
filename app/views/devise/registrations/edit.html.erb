@@ -6,11 +6,6 @@
   <p><%= f.label :email, 'Email' %><br />
   <%= f.email_field :email %></p>
 
-  <p>
-    <%= f.check_box :adm %>
-    <%= f.label :adm, 'Admin' %>  
-  </p>
-
   <p><%= f.label :password, "Senha" %> <i>(deixe em branco se você não quer mudá-lo)</i><br />
   <%= f.password_field :password %></p>
 
@@ -20,34 +15,10 @@
   <p><%= f.label :current_password, "Senha corrente" %> <i>(precisamos de sua senha atual para confirmar as alterações)</i><br />
   <%= f.password_field :current_password %>
   </p>
-  
-<fieldset>
-  <legend>Escolha o seus clubes</legend>
   <p>
-    <%= f.label :company_default_id, 'Clube padrão' %><br />    
-    <%= f.select :company_default_id , Company.all.collect{|p| [p.name, p.id]}, {:prompt => 'Selecione'} %>    
+    <%= f.label :profile_id, 'Perfil' %><br />        
+    <%= f.select :profile_id , Profile.all.collect{|pp| [pp.name, pp.id]}, {:prompt => 'Selecione'} %>    
   </p>
-
-
-  <% unless Company.all.empty? %>
-      <table>
-        <% contador = 0 %>
-        <% Company.all.each do |company| %>
-          <% if contador == 0 %>
-            <tr>
-            <%end%>
-            <%  contador = contador + 1 %>
-            <td>&nbsp;&nbsp;<%= check_box_tag 'user[company_ids][]', company.id, resource.company_ids.include?(company.id),  %>
-              <%= company.name %>&nbsp;&nbsp;</td>
-            <% if contador == 3 %>
-              <%contador = 0%>
-            </tr>
-          <%end%>
-        <% end %>
-      </table>
-  <% end %>
-</fieldset>    
-
   <p><%= f.submit "Alterar" %></p>
 <% end %>
 

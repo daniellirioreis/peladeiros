@@ -1,14 +1,16 @@
 # encoding: utf-8
 class GamesController < ApplicationController
   before_filter :authenticate_user!  
+  before_filter :authorize_controller!
   before_filter :company_have_calendar
+  
   # GET /games
   # GET /games.xml
   def index
     unless current_company == nil
       @games = Game.for_company_id(current_company.id).paginate(:per_page => 5, :page => params[:page])
     else
-      flash[:alert] = "Acesse 'Meu perfil' e defina um clube padrão para fazer pesquisar de jogos."      
+      flash[:alert] = "Acesse 'Minha Conta' e defina um clube padrão para fazer pesquisar de jogos."      
       redirect_to dashboard_path
     end
   end
@@ -17,9 +19,9 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     respond_to do |format|
       if @game.closed
-        format.html { redirect_to(games_path, :notice => 'Jogo fechado com sucesso.') }
+        format.html { redirect_to(current_company.calendar, :notice => 'Jogo fechado com sucesso.') }
       else
-        format.html { redirect_to(games_path, :alert => @game.errors.full_messages) }
+        format.html { redirect_to(current_company.calendar, :alert => @game.errors.full_messages) }
       end
     end
     
@@ -40,9 +42,10 @@ class GamesController < ApplicationController
   # GET /games/new.xml
   def new
     @game = Game.new
+    day = Calendar::Day.find(params[:day_id])
     @game.company = current_company
+    @game.day = day
     @game.user = current_user
-
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @game }
@@ -61,8 +64,8 @@ class GamesController < ApplicationController
     @game.status = 0
     respond_to do |format|
       if @game.save
-        @game.send_email    
-        format.html { redirect_to(games_path, :notice => 'Jogo criado com sucesso.') }
+#        @game.send_email    
+        format.html { redirect_to(current_company.calendar, :notice => 'Jogo criado com sucesso.') }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @game.errors, :status => :unprocessable_entity }
@@ -76,7 +79,7 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     respond_to do |format|
       if @game.update_attributes(params[:game])
-        format.html { redirect_to(games_path, :notice => 'Jogo atualizado com sucesso.') }
+        format.html { redirect_to(current_company.calendar, :notice => 'Jogo atualizado com sucesso.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -96,14 +99,24 @@ class GamesController < ApplicationController
       format.xml  { head :ok }
     end
   end
-
+  
   protected
   
   def company_have_calendar
-    unless current_company.calendar.present?
-      flash[:alert] = 'Jogos não pode ser criado. É necessário definir um calendário'
+    unless current_company.nil?
+      if current_company.calendar.nil?
+        flash[:alert] = 'Jogos não pode ser criado. É necessário definir um calendário'
+        redirect_to dashboard_path
+      end          
+    else
+      flash[:alert] = ' É necessário definir um clube para consulta.'
       redirect_to dashboard_path
-    end          
+    end
   end
+  
+  def authorize_controller!
+    authorize! action_name.to_sym, full_controller_name
+  end
+  
   
 end

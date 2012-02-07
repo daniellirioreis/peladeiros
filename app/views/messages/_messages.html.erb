@@ -1,0 +1,4 @@
+<% @messages.each do |message|%>
+  <oii>
+  <b class="<% if message.user_from == current_user %>green<%else%>blue<%end%>"><<%= message.created_at %><%= message.user_from %>></b> <%=message.text%> <br/>    
+<%end%>

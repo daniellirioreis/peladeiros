@@ -14,7 +14,6 @@
     <table class='records'>
       <tr>
         <th>Membros</th>
-        <th COLSPAN="3" align='left'>Ação</th>
       </tr>
 
     <% game.escalations.each do |e| %>
@@ -26,9 +25,8 @@
     <% end %>
     <tr>
       <td align="center">
-        <%= link_to image_tag('/images/buttons/new.png'), new_escalation_path(:game_id => game.id) %>
+        <%= link_to image_tag('/images/buttons/new.png'), new_escalation_path(:game_id => game.id) , :title => 'Confirmar presença'%>
       </td>
-      <td></td>    
     </tr>  
     </table>      
   </fieldset>

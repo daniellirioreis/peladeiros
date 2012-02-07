@@ -6,21 +6,91 @@
     <% end %>
   </div>
 <% end %>
-<fieldset>
   <%= f.hidden_field :game_id, :value => @escalation.game.id %>        
   <%= f.hidden_field :user_id, :value => @escalation.user.id %>          
-  <p>
-    <b>Jogo:</b>
-     <%= @escalation.game %>
-  </p>
-  <p>
-    <b>Dia:</b>
-     <%= @escalation.date %>
-  </p>
-  <p>
-    <b>Membro:</b>
-     <%= @escalation.user %>
-  </p>
+
+  <h2><%= @escalation.game.name %></h2>
+  <fieldset>
+    <legend><%= image_tag('/images/buttons/game.png')%>  
+    Informações do Jogo</legend>
+    <table width="90%">
+      <tr>
+        <td width="120px">
+          <b>Jogo do Clube:</b>
+          <%= @escalation.game.company %>
+        </td>
+        <td width="80px">
+          <b>Nome:</b>
+          <%= @escalation.game.name %>        
+        </td>
+      </tr>
+      <tr>
+        <td width="120px">
+          <b>Dia:</b>
+          <%=l @escalation.game.day.date %>
+        </td>
+        <td width="80px">
+          <b>Período:</b>
+          <%= l @escalation.game.hour_start , :format => :time%> à
+          <%= l @escalation.game.hour_end  , :format => :time%>
+        </td>
+      </tr>    
+      <tr>
+        <td width="120px">
+          <b>Lugar:</b>
+          <%= @escalation.game.place_now %><br/>
+          <b>Endereço</b>
+          <%= @escalation.game.place_now.description%>,
+          <%= @escalation.game.place_now.city%><br/>
+          <b>Telefone:</b>
+          <%= @escalation.game.place_now.phone%>        
+        </td>
+      </tr>    
+      <tr>
+        <td width="120px">
+          <b>Número de times:</b>
+          <%= @escalation.game.number_team %>
+        </td>
+        <td width="80px">
+          <b>Número de jogadores no time:</b>
+          <%= @escalation.game.number_of_players_in_team %>
+        </td>
+      </tr>    
+      <tr>
+        <td width="120px">
+          <b>Status:</b>
+          <%= @escalation.game.status == 0 ? "Aberto" : "Fechado" %>      
+        </td>
+      </tr>    
+      <tr>
+        <td width="120px">
+          <b>Responsável:</b>
+          <%= @escalation.game.user %>      
+        </td>
+      </tr>    
+    </table>
+  </fieldset>
+  <br/>
+  <fieldset>
+    <legend><%= image_tag('/images/buttons/group.png')%>  
+    Convocação</legend>
+      <% if @escalation.game.escalations.any? %>
+        <% @escalation.game.escalations.each do |e| %>
+          <%= " * #{e.user}" %><br/>
+        <% end %>
+      <% else %>
+        Jogo não possuem convocação.
+      <% end %>
+  </fieldset>
+
+
+
+
+
+
+
+
+
   <div class="actions">
     <%= f.submit 'Confirmar presença'%>
   </div>  

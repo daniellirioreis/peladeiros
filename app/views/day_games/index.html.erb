@@ -1,0 +1,46 @@
+<h2>LISTAGEM DE JOGOS</h2>
+<table class='records'>
+  <tr>
+    <th>Status</th>        
+    <th align='center'>Dia</th>    
+    <th align='center'>Nome</th>
+    <th>Dia Semana</th>        
+    <th>Período</th>
+    <th>Lugar</th>
+    <th>Responsável</th>
+    <th COLSPAN="3" align='left'>Ação</th>
+  </tr>
+    <% @games.each do |game| %>
+      <tr>
+        <td align='center'>
+          <% if game.status  == 1 %>
+            <%= image_tag('/images/buttons/fechado.png')%>  
+          <% else %>
+            <%= image_tag('/images/buttons/aberto.png')%>            
+          <% end %>
+        </td>            
+        <td align='center'><%= game.day  %></td>        
+        <td align='center'><%= game.name %></td>
+        <td align= 'center'><%=  game.weekday  %></td>        
+        <td><%= l game.hour_start , :format => :time%> à
+        <%= l game.hour_end  , :format => :time%></td>
+        <td><%= game.place_now %></td>
+        <td><%= game.user %></td>
+        <td>
+          <%if game.user.id == current_user.id %>            
+            <%= link_to image_tag('/images/buttons/close.png'), closed_game_path(game.id) if  game.status == 0 %>         
+         <% end %>
+         
+        <%= link_to image_tag('/images/buttons/show.png'), game %>
+        <%= link_to image_tag('/images/buttons/edit.png'), edit_game_path(game) %>
+        <%= link_to image_tag('/images/buttons/delete.png'), game, :confirm => 'Confirma exclusão?', :method => :delete %></td>
+      </tr>
+    <% end %>
+</table>
+<%= will_paginate @games %>
+
+<%= link_to image_tag('/images/buttons/back.png'), @calendar, :title => "Voltar para calendário"  %>    
+
+
+<br />
+

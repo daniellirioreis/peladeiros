@@ -1,7 +1,7 @@
 class CreateCompaniesUsers < ActiveRecord::Migration
 
   def self.up
-    create_table :companies_users, :id =>false do |t|
+    create_table :companies_users do |t|
       t.integer :company_id
       t.integer :user_id
     end

@@ -1,0 +1,13 @@
+pt-BR:
+  roles:
+    calendars: "Calendários"
+    companies: "Clubes"
+    games: "Jogos"
+    places: "Lugares"
+    escalations: "Confirmar Presença"
+    users: "Membros" 
+    profiles: "Perfis" 
+    day_games: "Jogos do Dia" 
+    linking_company: "Escolha de Clube" 
+    companies_users: "Minhas Contas/Contas"
+    accounts: 'Faturas'

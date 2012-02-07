@@ -20,7 +20,8 @@
   
   <div class="field">
     <%= f.label :day , 'Dia'%><br />
-    <%= f.select :day_id , (@game.company.calendar.days.ordered).collect{|p| [p.to_s, p.id]}, {:prompt => 'Selecione'} %>
+    <%= f.hidden_field :day_id, :value => @game.day_id %>    
+    <%= f.text_field :day_id, :value => (l @game.day.date), :disabled => true %>
   </div>  
   <div class="field">
     <%= f.label :hour_start, "Hora Inícial" %><br />
@@ -49,7 +50,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => 'botao', :title => 'Salvar'%>
   </div>
 
 <% end %>

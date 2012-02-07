@@ -1,43 +1,72 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <h2>
-    Calendário do clube
-    <%= @calendar.company %>
-  </h2>
-</p>
-
-
-
-<table class ="records">
-  <% contador = 0 %>
-  <%@days.each do |day|%>  
-  <% if contador == 0 %>
-      <tr>
-      <%end%>
-      <%  contador = contador + 1 %>
+<% form_tag @calendar, :method => 'get' do  %>
+<fieldset>
+  <table>
+    <tr>
       <td>
-        <fieldset>
-          <%= l day.date , :format => :long %><br/>
-          <%= day.weekday %><br/>
-          <% if day.games.for_status(0).any? %>
-            <%= day.games.for_status(0).count %> 
-            <%= image_tag('/images/buttons/game.png')%>            
-          <%end%>
-        </fieldset>        
+        Informe a data para pesquisa<br/>
+        <%= text_field_tag :search %>(DD/MM/AAAA)
+        <%= hidden_field_tag :id, @calendar.id %>        
       </td>
-      <% if contador == 7%>
-        <%contador = 0%>
-      </tr>
-    <%end%>
-  <% end %>
-</table>
-<%= will_paginate @days %>
-
-
-
-
-
-
-<%= link_to image_tag('/images/buttons/edit.png'), edit_calendar_path(@calendar) %> 
-<%= link_to image_tag('/images/buttons/back.png'), calendars_path(:company_id => @calendar.company_id) %>
+      <td>
+        <br/>
+        <%= submit_tag  "Pesquisar"%>
+      </td>
+    </tr>
+  </table>
+</fieldset>
+<% end %>
+<fieldset>
+  <table class="records">
+    <%@days.each do |day|%>
+    <tr>
+      <td>
+        <h3><%=day.weekday %></h3>
+      </td>
+      <td align='center'>
+        <font size= 6 ><b>.</b></font>
+      </td>
+      <td align='center'>
+        <h3><%=day.month_string %>/<%=day.date.year%></h3>
+      </td>    
+      <td align='center'>
+        <%= link_to image_tag('/images/buttons/game.png'), new_game_path(:day_id => day.id) %>                          
+        <%= link_to image_tag('/images/buttons/edit.png'), edit_calendar_path(@calendar) %>                          
+        
+      </td>      
+      <td align='center'>
+        <h1><%= day.date.day%></h1>
+      </td>    
+    </tr>
+    <tr>
+    </tr>
+  </table>
+  <hr />
+    <fieldset>
+      <% if day.games.any?%>
+        <%c = 0%>
+        <% day.games.each do |game|%>
+          <%c = c + 1%>
+          <p class="<% if game.status == 1 %>line-through <%end%>">
+            <b><%=c %></b> - 
+            <%= l game.hour_start , :format => :time%> à
+            <%= l game.hour_end  , :format => :time%>,            
+            <%= game.name %>,
+            <%= game.place_now.description %> -             
+            <%= game.place_now.city %>,
+            <%= game.place_now.name %>.
+            <%= link_to image_tag('/images/buttons/show.png'), game %>                  
+            <%= link_to image_tag('/images/buttons/group.png'), new_escalation_path(:game_id => game.id) , :title => 'Confirmar presença' if game.status == 0 %>
+            <%= link_to image_tag('/images/buttons/close.png'), closed_game_path(game.id) , :title => "Fechar jogo" if  game.status == 0 %>                     
+            <hr/>          
+          </p>
+        <%end%>
+      <%else%>
+      <p align="center">
+        nenhum jogo encontrado.
+      <p/>
+        
+      <%end%>
+    </fieldset>
+  <%end%>
+  
+  <%= will_paginate @days %>  

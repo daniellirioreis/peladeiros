@@ -1,5 +1,6 @@
 class CompaniesController < ApplicationController
   before_filter :authenticate_user!  
+  before_filter :authorize_controller!  
 
   # GET /companies
   # GET /companies.xml
@@ -81,4 +82,10 @@ class CompaniesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  protected
+  def authorize_controller!
+    authorize! action_name.to_sym, full_controller_name
+  end
+  
 end

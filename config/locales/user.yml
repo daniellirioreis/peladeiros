@@ -8,3 +8,5 @@ pt-BR:
     attributes:
       user:
         name: "Nome"
+        profile_id: "Perfil"
+        password: "Senha"

@@ -1,4 +1,4 @@
-<h2><%= @game.id %></h2>
+<h2><%= @game.name %></h2>
 <fieldset>
   <legend><%= image_tag('/images/buttons/game.png')%>  
   Informações do Jogo</legend>
@@ -48,7 +48,7 @@
     <tr>
       <td width="120px">
         <b>Status:</b>
-        <%= @game.status == 1 ? "Aberto" : "Fechado" %>      
+        <%= @game.status == 0 ? "Aberto" : "Fechado" %>      
       </td>
     </tr>    
     <tr>
@@ -73,5 +73,6 @@
 </fieldset>
 
 <br/>
-<%= link_to 'Editar', edit_game_path(@game)  if @game.status == 1%> 
-<%= link_to 'Voltar para listagem de jogos', games_path %>
+<%= link_to image_tag('/images/buttons/edit.png'), edit_game_path(@game), :title => "Editar"  if @game.status == 0%> 
+<%= link_to image_tag('/images/buttons/close.png'), closed_game_path(@game.id) , :title => "Fechar jogo" if  @game.status == 0 %>         
+<%= link_to image_tag('/images/buttons/back.png'), current_company.calendar , :title => "Voltar para calendário"%>      

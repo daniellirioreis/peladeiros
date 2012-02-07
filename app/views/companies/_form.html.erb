@@ -1,7 +1,6 @@
 <%= form_for(@company) do |f| %>
 <% if @company.errors.any? %>
   <div id="error_explanation">
-    <h3> Erro(s) encontrado(s)</h3>
     <% @company.errors.full_messages.each do |msg| %>
       <p><%= "* #{msg}" %></p>
     <% end %>
@@ -12,6 +11,17 @@
     <%= f.label :name, "Nome" %><br />
     <%= f.text_field :name %>
   </div>
+
+  <div class="field">
+    <%= f.label :number_members %><br />
+    <%= f.text_field :number_members %>
+  </div>
+
+  <div class="field">
+    <%= f.label :price_for_month %><br />
+    <%= f.text_field :price_for_month %>
+  </div>
+  
   <div class="actions">
     <%= f.submit 'Criar Clube'%>
   </div>

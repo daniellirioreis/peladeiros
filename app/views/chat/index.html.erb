@@ -1,0 +1,8 @@
+<h3><%= image_tag('/images/buttons/group.png')%>
+Bate Papo</h3>
+<fieldset>
+<% @companies_users.each  do |company_user|  %>
+  <%= image_tag('/images/buttons/avatar.png')%><%=@user%> 
+  <%= link_to company_user.user, messages_path(:user_id => company_user.user_id) %><br/>
+<% end %>
+</fieldset>

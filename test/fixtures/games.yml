@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  company_id: 1
+  name: MyString
+  date: 2011-10-25
+  hour_start: 2011-10-25 23:53:38
+  hour_end: 2011-10-25 23:53:38
+  place: 1
+  number_team: 1
+  status: 1
+  number_of_players_in_team: 1
+  user_id: 1
+
+two:
+  company_id: 1
+  name: MyString
+  date: 2011-10-25
+  hour_start: 2011-10-25 23:53:38
+  hour_end: 2011-10-25 23:53:38
+  place: 1
+  number_team: 1
+  status: 1
+  number_of_players_in_team: 1
+  user_id: 1

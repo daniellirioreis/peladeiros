@@ -1,6 +1,7 @@
 # encoding: utf-8
 class EscalationsController < ApplicationController
   before_filter :authenticate_user!  
+  before_filter :authorize_controller!    
   before_filter :company_have_games
   
   def index
@@ -31,7 +32,7 @@ class EscalationsController < ApplicationController
 
     respond_to do |format|
       if @escalation.save
-        format.html { redirect_to(escalations_path, :notice => 'Presença confirmada com sucesso.') }
+        format.html { redirect_to(current_company.calendar, :notice => 'Presença confirmada com sucesso.') }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @escalation.errors, :status => :unprocessable_entity }
@@ -42,10 +43,19 @@ class EscalationsController < ApplicationController
   protected
   
   def company_have_games
-    unless current_company.games.present?
-      flash[:alert] = 'Não existem jogos cadastrados'
-      redirect_to dashboard_path
-    end          
+    unless current_company.nil? 
+      unless current_company.games.present?
+        flash[:alert] = 'Não existem jogos cadastrados'
+        redirect_to dashboard_path
+      end          
+    else
+      flash[:alert] = ' É necessário definir um clube para consulta.'
+      redirect_to dashboard_path      
+    end
+  end
+  
+  def authorize_controller!
+    authorize! action_name.to_sym, full_controller_name
   end
   
   

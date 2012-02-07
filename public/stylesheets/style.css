@@ -63,16 +63,17 @@ h2 {
   
 }
 .botao{/*input botão sistema*/
-       -moz-border-radius:5px;
-       -webkit-border-radius:5px;
-       border:solid 1px #ccc;
-       border-bottom:solid 2px #666;
-       border-left:solid 1px #666;
-       background: transparent url(/images/inputs/botao.png) repeat-x;
-       font-size:12px;
-       padding:2px 4px 2px  4px;
-       margin:5px 5px 5px 0;
-       text-shadow: 1px 1px 2px #ccc;
+  background: transparent url(/images/buttons/contract.png) repeat-x;
+  font-size:12px;
+  margin:0px;
+  width:40px;
+  height:40px;
+  display:block;
+  text-indent:-5000px;
+  overflow:hidden;
+  float:left;
+  cursor:pointer;  
+  }
 }
 
 
@@ -439,7 +440,45 @@ legend{
 
 }
 
+#div_over_flow_y{
+    margin:0 10px 0 0;
+    padding:0;
+    border:solid 1px #ccc;
+    overflow-y:auto;
+    height:300px;
+    width:680px;
+    font-size:12px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    background:#efefef;
+    line-height:16px;
+    cursor:pointer;
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+}
 
 
+.calendar{
+    background:transparent url(/images/buttons/calendar_div.png) no-repeat;
+    width:90px;
+    height:92px;
+/*    padding:30px 10px 0 17px;*/
+    color:#000;
+/*    margin:0 5px 0 1px;
+    padding-bottom:5px;
+    letter-spacing: .3mm;
+    margin-bottom: 5px;
+*/    color:#333;
+    font-size:12px;
+/*    float:left;
+*/}
 
+.line-through {
+  text-decoration: line-through; }
 
+.green {
+  color: green;
+  font-weight: bold; }
+
+.blue {
+  color: blue;
+  font-weight: bold; }

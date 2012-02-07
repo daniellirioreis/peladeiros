@@ -1,0 +1,34 @@
+<fieldset>
+  <p>
+    <%= image_tag('/images/buttons/avatar.png')%><%=@user%> 
+  </p>
+</fieldset>
+<br/>
+<div id='messages'>
+    <%= render 'messages' %>
+</div>
+<br/>
+<% form_tag messages_path, :method => 'post' do  %>
+<fieldset>
+  <p>
+    <%= text_area_tag '[message][text]', nil, :cols => 70 %>
+    <%= hidden_field_tag '[message][user_from_id]', current_user.id %>
+    <%= hidden_field_tag '[message][user_to_id]', @user.id %>
+    <%= submit_tag  "Enviar"%>    
+  </p>
+</fieldset>
+<%end%>
+<p>
+  <%=link_to image_tag('/images/buttons/back.png'), chat_index_path , :title => "Voltar para bate papo"%> 
+</p>
+<script type="text/javascript">
+  //<![CDATA[
+  function updateMine () {
+    $.get('#{messages_path(:user_id => @user.id :format => :js)}');
+  }
+
+  setInterval(updateMine, 5000);
+  
+  //]]>
+</script>
+

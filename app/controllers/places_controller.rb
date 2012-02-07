@@ -1,5 +1,8 @@
+# encoding: utf-8
+
 class PlacesController < ApplicationController
   before_filter :authenticate_user!  
+  before_filter :authorize_controller!  
   
   # GET /places
   # GET /places.xml
@@ -82,4 +85,10 @@ class PlacesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  protected
+  def authorize_controller!
+    authorize! action_name.to_sym, full_controller_name
+  end
+  
 end

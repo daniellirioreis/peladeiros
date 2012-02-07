@@ -1,0 +1,34 @@
+<%= form_for(@profile) do |f| %>
+<% if @profile.errors.any? %>
+  <div id="error_explanation">
+    <% @profile.errors.full_messages.each do |msg| %>
+      <p><%= "* #{msg}" %></p>
+    <% end %>
+  </div>
+<% end %>
+
+  <div class="field">
+    <%= f.label :name, "Nome" %><br />
+    <%= f.text_field :name %>
+  </div>
+  
+  <% unless roles.empty? %>
+      <% roles.each do |controller, roles| %>
+        <fieldset>
+          <legend><%=controller%></legend>
+            <% roles.each do |role|%>
+                  <%= check_box_tag 'profile[role_ids][]', role.id, @profile.role_ids.include?(role.id), :id => "#{role.controller.underscore}_#{role.action}" %>                
+                  <%= role.action_to_s %>              
+            <% end %>
+        </fieldset>
+        <br/>
+      <% end %>
+  <% end %>
+  
+  
+  
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

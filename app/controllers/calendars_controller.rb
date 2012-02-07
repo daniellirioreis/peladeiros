@@ -1,6 +1,8 @@
 # encoding: utf-8
 class CalendarsController < ApplicationController
   before_filter :authenticate_user!    
+  before_filter :authorize_controller!  
+  
   # GET /calendars
   # GET /calendars.xml
   def index
@@ -16,11 +18,22 @@ class CalendarsController < ApplicationController
   # GET /calendars/1.xml
   def show
     @calendar = Calendar.find(params[:id])
-    @days = @calendar.days.ordered.paginate(:per_page => 31, :page => params[:page])
+    if params[:search].blank?
+      @days = @calendar.days.search(Date.today).ordered.paginate(:per_page => 1, :page => params[:page])
+    else
+      data = params[:search] 
+      data = Date.parse(data[6,4]+'-'+data[3,2]+'-'+data[0,2])      
+      @days = @calendar.days.search(data).ordered.paginate(:per_page => 1, :page => params[:page])
+      if @days.empty?
+        @days = @calendar.days.ordered.paginate(:per_page => 1, :page => params[:page])        
+        flash[:notice] = "Não existem no calendário a data informada"
+      else
+        flash[:notice] = "Dia encontrado com sucesso"
+      end
+    end
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @calendar }
     end
   end
 
@@ -83,4 +96,10 @@ class CalendarsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  protected
+  def authorize_controller!
+    authorize! action_name.to_sym, full_controller_name
+  end
+  
 end

@@ -10,7 +10,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111222031903) do
+ActiveRecord::Schema.define(:version => 20120130233643) do
+
+  create_table "accounts", :force => true do |t|
+    t.integer  "company_user_id"
+    t.integer  "month"
+    t.integer  "year"
+    t.float    "price"
+    t.text     "description"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "paid",            :default => false
+  end
 
   create_table "calendar_days", :force => true do |t|
     t.integer  "calendar_id"
@@ -31,11 +43,14 @@ ActiveRecord::Schema.define(:version => 20111222031903) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "number_members"
+    t.float    "price_for_month"
   end
 
-  create_table "companies_users", :id => false, :force => true do |t|
+  create_table "companies_users", :force => true do |t|
     t.integer "company_id"
     t.integer "user_id"
+    t.integer "type_account", :default => 0
   end
 
   create_table "escalations", :force => true do |t|
@@ -60,6 +75,15 @@ ActiveRecord::Schema.define(:version => 20111222031903) do
     t.integer  "day_id"
   end
 
+  create_table "messages", :force => true do |t|
+    t.integer  "user_from_id"
+    t.integer  "user_to_id"
+    t.integer  "message_from_id"
+    t.text     "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "places", :force => true do |t|
     t.string   "city"
     t.string   "name"
@@ -70,9 +94,27 @@ ActiveRecord::Schema.define(:version => 20111222031903) do
     t.string   "phone"
   end
 
+  create_table "profiles", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "profiles_roles", :id => false, :force => true do |t|
+    t.integer "profile_id", :null => false
+    t.integer "role_id",    :null => false
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string   "action",     :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "controller"
+  end
+
   create_table "users", :force => true do |t|
-    t.string   "email",                                 :default => "",    :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => "",    :null => false
+    t.string   "email",                                 :default => "", :null => false
+    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -84,7 +126,7 @@ ActiveRecord::Schema.define(:version => 20111222031903) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "company_default_id"
-    t.boolean  "adm",                                   :default => false
+    t.integer  "profile_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

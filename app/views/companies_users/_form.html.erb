@@ -1,0 +1,33 @@
+<%= form_for @company_user, :url => @company_user.new_record? ? companies_users_path : companies_user_path do |f| %>
+  <% if @company_user.errors.any? %>
+    <div id="error_explanation">
+      <h3> Erro(s) encontrado(s)</h3>
+      <% @company_user.errors.full_messages.each do |msg| %>
+        <p><%= "* #{msg}" %></p>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :user_id %><br />    
+    <%= f.hidden_field :user_id, :value => @company_user.user.id %>    
+    <%= f.text_field :user_id, :value => @company_user.user, :disabled => true %>  
+  </div>
+  
+  <fieldset>      
+    <legend>Tipo de Conta</legend>
+    <br/>
+    <%= f.radio_button :type_account, 0   %>Diarista
+    <%= f.radio_button :type_account, 1 %>Mensalista 
+  </fieldset>
+  <br/>
+  <div class="field">
+    <%= f.label :company_id %><br />
+    <%= f.select :company_id , (Company.ordered).collect{|p| [p.to_s, p.id]}, {:prompt => 'Selecione'}, :disabled => @company_user.persisted? %>    
+  </div>
+  
+  <div class="actions">
+    <%= f.submit :value => "Salvar" %>
+  </div>
+  
+  
+<% end %>

@@ -5,6 +5,7 @@
 <link REL="SHORTCUT ICON" href="/images/favicon.png" />    
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <%= stylesheet_link_tag 'style', 'table' %>
+<%= javascript_include_tag 'jquery' %>
 
 </head>
 <body>
@@ -52,44 +53,75 @@
                 <%= link_to 'Logout', destroy_user_session_path, :confirm => 'logout confirm' %>          
               </li>
               
-              <% if current_user.adm %>
+              <% if current_user.profile.present? %>
                 <li>
-                  <%= image_tag('/images/buttons/company.png')%>  
-                  <%= link_to 'Clubes', companies_path %>
+                  <%= image_tag('/images/buttons/linking.png')%>  
+                  <%= link_to 'Escolha de clube', linking_company_index_path %>
                 </li>
-              <%end%>
-              <li>
-                <%= image_tag('/images/buttons/game.png')%>  
-                <%= link_to 'Jogos', games_path %>
-              </li>              
-              <li>
-                <%= image_tag('/images/buttons/linking.png')%>  
-                <%= link_to 'Escolha de clube', linking_company_users_path %>
-              </li>
-              <li>
-                <%= image_tag('/images/buttons/group.png')%>  
-                <%= link_to 'Confirmar presença', escalations_path %>
-              </li>              
-              <li>
-                <%= image_tag('/images/buttons/place.png')%>  
-                <%= link_to 'Lugares', places_path %>
-              </li>
-              <li>
-                <%= image_tag('/images/buttons/avatar.png')%>  
-                <%= link_to 'Minha Conta', edit_user_registration_path %>
-              </li>
+                <% if can? :read, 'companies' %>
+                  <li>
+                    <%= image_tag('/images/buttons/company.png')%>  
+                    <%= link_to 'Clubes', companies_path %>
+                  </li>
+                <% end %>
+
+                <% if can? :read, 'calendars' %>
+                  <li>
+                    <% if current_company.present? %>
+                      <%= image_tag('/images/buttons/event1.png')%>  
+                      <% if current_company.calendar.present? %>
+                        <%= link_to 'Calendário', current_company.calendar %>
+                      <% else %>
+                        <%= link_to 'Criar Calendário', new_calendar_path(:company_id => current_company.id) %>                                    
+                      <% end %>
+                    <%end%>
+                  </li>
+                <% end %>
+                <% if can? :read, 'places' %>              
+                  <li>
+                    <%= image_tag('/images/buttons/place.png')%>  
+                    <%= link_to 'Lugares', places_path %>
+                  </li>
+                <% end %>
+                <% if can? :read, 'users' %>              
+                <li>
+                  <%= image_tag('/images/buttons/avatar.png')%>  
+                  <%= link_to 'Meus dados', edit_user_registration_path %>
+                </li>
+                <% end %>
+                  <% if current_user.profile_id == 1 %>
+                    <li>                  
+                      <%= image_tag('/images/buttons/avatar.png')%>  
+                      <%= link_to 'Contas', companies_users_path %>
+                    </li>
+                  <%else%>
+                    <li>                  
+                      <%= image_tag('/images/buttons/avatar.png')%>  
+                      <%= link_to 'Minhas Contas', companies_users_path %>                  
+                    </li>
+                  <%end%>
+              
+              <% if can? :read, 'profiles' %>              
               <li>
                 <%= image_tag('/images/buttons/config.png')%>  
-                <%= link_to 'Config. de Conta', edit_user_registration_path %>
+                <%= link_to 'Perfil', profiles_path %>
               </li>
-
+              <% end %>
+          <% end %>
+          <% unless current_user.profile.present? %>
+            <li>
+              <%= image_tag('/images/buttons/avatar.png')%>  
+              <%= link_to 'Meus dados', edit_user_registration_path %>
+            </li>
+          <% end %>
             </ul>
           </div>
         </div>
       <% else %>
         <div class="sidebar">
           <div class="gadget">
-            <h3 class="star">Cadastre sua pelada on line e chame seus amigos.</h3>
+            <p>&nbsp;Cadastre sua pelada on line</br>
+              &nbsp;&nbsp;e chame seus amigos.</p> 
             <div class="clr"></div>
             <ul class="sb_menu">
              <%= image_tag('/images/buttons/game.png')%>   

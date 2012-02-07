@@ -1,0 +1,12 @@
+pt-BR:
+  activerecord:
+    models:
+      account:
+        one: "Fatura"
+        other: "Faturas"
+
+    attributes:
+      account:
+        company: "Clube"
+        company_id: "Clube"
+        user_id: 'Membro'

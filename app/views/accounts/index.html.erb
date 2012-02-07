@@ -1,0 +1,33 @@
+<h2>Listagem de faturas</h2>
+
+<table class="records">
+  <tr>
+    <th>Mês</th>
+    <th>Ano</th>
+    <th>Preço</th>
+    <%if can? :paid, 'accounts' %>
+      <th>Pago ?</th>
+    <%end%>
+  </tr>
+
+<% @accounts.each do |account| %>
+  <tr>
+    <td><%= account.month_string %></td>
+    <td><%= account.year %></td>
+    <td align="right"><%=  number_to_currency account.price, :precision => 2 %></td>    
+      <%if can? :paid, 'accounts' %>
+        <td align='center'>
+        <% if account.paid %>
+          <%= link_to image_tag('/images/buttons/paid.png'), paid_account_path(:id => account.id) , :title => 'Pago'%>
+        <%else%>
+          <%= link_to image_tag('/images/buttons/not_paid.png'), paid_account_path(:id => account.id), :title => "Não Foi pago" %>  
+        <%end%>
+        </td>
+        
+      <% end %>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @accounts %>
+<br/>
+<%= link_to image_tag('/images/buttons/back.png'), companies_users_path %>

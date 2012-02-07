@@ -14,6 +14,15 @@ class Calendar < ActiveRecord::Base
   def date_end_previews
     "#{date_end_was.day}/#{date_end_was.month}/#{date_end_was.year}"
   end
+  
+  
+  def months
+    (date_start..date_end).map do |data|
+      [data.month, data.year]
+    end.uniq
+  end
+  
+  
   protected 
   
   def a

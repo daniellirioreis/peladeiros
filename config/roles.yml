@@ -1,0 +1,20 @@
+controllers:
+  - companies
+  - places
+  - games
+  - escalations
+  - calendars
+  - users
+  - profiles
+  - linking_company
+  - companies_users
+  - accounts
+  
+actions:
+  - create
+  - read
+  - update
+  - destroy
+  - closed
+  - switch_to_company
+  - paid

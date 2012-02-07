@@ -1,0 +1,42 @@
+<h2>listagem de Contas(Clubes) </h2>
+<p align='right'>
+  <%= link_to image_tag('/images/buttons/new.png'), new_companies_user_path %>  
+</p>
+<table class="records">
+  <tr>
+    <th>
+      <%if current_user.profile_id == 1 %>
+        Membro
+      <%else%>
+        Clube      
+      <%end%>
+      </th>
+    <th>Tipo de Conta</th>
+    <th COLSPAN="2" align='left'>Ação</th>
+  </tr>
+
+<% @companies_users.each do |company_user| %>
+  <tr>
+    <td>
+      <%if current_user.profile_id == 1 %>
+        <%= company_user.user %>
+      <%else%>
+        <%= company_user.company %>
+      <%end%>
+    </td>
+    <td align= "center"><%= 
+      if company_user.type_account == 1
+        "Mensalista"
+      else
+        "Diarista"
+      end  
+    %></td>    
+    <td><%= link_to image_tag('/images/buttons/edit.png'), edit_companies_user_path(company_user) %>
+    <td><%= link_to "Faturas", accounts_path(:company_user_id => company_user.id )%>
+      
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @companies_users if @companies_users.respond_to?(:total_pages) %>
+<br />
+

@@ -22,7 +22,6 @@ class Game < ActiveRecord::Base
 
   scope :ordered, order("#{quoted_table_name}.date DESC")
   
-
   def to_s
     name.to_s if name
     
@@ -74,8 +73,7 @@ class Game < ActiveRecord::Base
     end
     
   end
-
-
+  
   def send_email    
      if status == 0 
         company.users.each do |user|
@@ -87,16 +85,10 @@ class Game < ActiveRecord::Base
        end
      end
   end
-  
 
   protected 
-
-
-    
-    def number_team_cannot_less_two
-      
-      errors.add(:number_team, 'não pode ser menor que 2' ) if number_team.to_i < 2
-      
-    end
+  def number_team_cannot_less_two
+    errors.add(:number_team, 'não pode ser menor que 2' ) if number_team.to_i < 2
+  end
     
 end

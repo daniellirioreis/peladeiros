@@ -8,3 +8,5 @@ pt-BR:
     attributes:
       company:
         name: "Nome"
+        number_members: "Nr. de Membros"
+        price_for_month: "Preço por mês"

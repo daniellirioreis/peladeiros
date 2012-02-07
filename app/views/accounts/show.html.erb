@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @account.user_id %>
+</p>
+
+<p>
+  <b>Month:</b>
+  <%= @account.month %>
+</p>
+
+<p>
+  <b>Year:</b>
+  <%= @account.year %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @account.price %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @account.description %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @account.name %>
+</p>
+<%= link_to image_tag('/images/buttons/back.png'), accounts_path %>

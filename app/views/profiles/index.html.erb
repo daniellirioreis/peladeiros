@@ -1,0 +1,24 @@
+<h2>Listagem de Perfis</h2>
+<p align='right'>
+  <%= link_to image_tag('/images/buttons/new.png'), new_profile_path %>
+</p>
+<table class='records'>
+  <tr>
+    <th>Nome</th>
+    <th COLSPAN="3"> Ações</th>
+  </tr>
+
+<% @profiles.each do |profile| %>
+  <tr>
+    <td><%= profile.name %></td>
+    <td>
+        <%= link_to image_tag('/images/buttons/edit.png'), edit_profile_path(profile) %> 
+        <%= link_to image_tag('/images/buttons/delete.png'), profile, :confirm => 'Confirma Exclusão?', :method => :delete %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<%= will_paginate @profiles %>
+
+<br />

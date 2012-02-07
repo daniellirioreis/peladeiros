@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_from_id: 1
+  user_to_id: 1
+  message_from_id: 1
+  text: MyText
+
+two:
+  user_from_id: 1
+  user_to_id: 1
+  message_from_id: 1
+  text: MyText

@@ -1,6 +1,27 @@
 Teste::Application.routes.draw do
 
+  resources :chat
+  
+  resources :messages
+  
+  resources :accounts do
+    member do
+      get :paid
+    end
+  end
+  resources :companies_users
+
+  resources :linking_company do 
+    member do
+      get :switch_to_company
+    end    
+  end
+
+  resources :day_games
+
   resources :calendars
+
+  resources :profiles
 
   resources :escalations
   
@@ -15,12 +36,6 @@ Teste::Application.routes.draw do
   end
 
   resources :users, :except => :show do
-    collection do
-      get :linking_company
-    end
-    member do
-      get :switch_to_company
-    end
   end
 
   get 'dashboard' => 'dashboard#index'

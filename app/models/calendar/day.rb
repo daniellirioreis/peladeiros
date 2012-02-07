@@ -6,8 +6,10 @@ class Calendar::Day < ActiveRecord::Base
   
   scope :ordered, order(:date)
 
+  scope :search, lambda { |search| where(:date => "#{search}%") }
+
   def to_s
-    "#{date.day}/#{date.month}/#{date.year}" if date.present?
+    date.day.to_s + '/' + date.month.to_s + '/' + date.year.to_s
   end
   
   def weekday
@@ -40,6 +42,58 @@ class Calendar::Day < ActiveRecord::Base
       w = "Domingo"
     end
       w
+  end
+
+  def month_string
+    m = nil      
+    if date.month == 1 
+      m = "Janeiro"
+    end
+    
+    if date.month == 2
+       m = "Fevereiro"
+    end
+
+    if date.month == 3
+      m = "Março"
+    end
+
+    if date.month == 4
+       m = "Abril"
+    end
+   
+    if date.month == 5
+      m = "Maio"
+    end
+
+    if date.month == 6
+      m = "Junho"
+    end
+
+    if date.month == 7
+      m = "Julho"
+    end
+    
+    if date.month == 8 
+      m = "Agosto"
+    end
+    
+    if date.month == 9
+       m = "Setembro"
+    end
+
+    if date.month == 10
+      m = "Outubro"
+    end
+
+    if date.month == 11
+       m = "Novembro"
+    end
+   
+    if date.month == 12
+      m = "Dezembro"
+    end    
+      m
   end
   
 end
